@@ -204,6 +204,73 @@ h1,h2,h3{text-wrap:balance}
   .fitgrid{grid-template-columns:1fr!important}
 }
 @media(max-width:480px){.vcards,.grid4,.form{grid-template-columns:1fr}.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:8px}}
+/* ---- v4 polish ---- */
+:root{--soft:#FAFAFA}
+.panel{box-shadow:0 1px 2px rgba(24,24,27,.04)}
+.phead h1{font-size:24px}
+.crumb{font:500 11px var(--mono);color:var(--faint);letter-spacing:.02em}
+.tip{position:fixed;z-index:100;pointer-events:none;background:#18181B;color:#fff;font-size:11.5px;padding:7px 9px;border-radius:8px;max-width:260px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.tip b{font-weight:700}
+.hero{display:grid;grid-template-columns:1fr 310px;padding:0;overflow:hidden;margin-bottom:14px}
+.hero .hl{padding:24px 26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.hero .hr{padding:22px 24px;border-left:1px solid var(--line);background:var(--soft);display:flex;flex-direction:column;gap:14px}
+.hero h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
+.hero .loc{color:var(--muted);font-size:13px}
+.hero .chips{display:flex;flex-wrap:wrap;gap:6px}
+.hero .verdict{font-size:14px;line-height:1.6;color:var(--muted);max-width:66ch}
+.hero .verdict b{color:var(--ink)}
+.ring{display:flex;align-items:center;gap:14px}
+.ring .rt b{display:block;font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.ring .rt span{font-size:12px;color:var(--muted)}
+.subbars{display:flex;flex-direction:column;gap:9px}
+.subbars .brow{grid-template-columns:96px 1fr 34px}
+.chart-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.chart-h .ct{font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.chart-h .cs{font-size:12px;color:var(--muted);margin-top:2px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--sans)}
+.pbar{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;padding:5px 0;cursor:default}
+.pbar .bl{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbar .bv{font:600 12px var(--mono);text-align:right}
+.pbar .btrack{height:12px;border-radius:6px}
+.pbar.you .bl{font-weight:700}
+.pbar.you .bfill{background:var(--blue)}
+.pbar.you .bv{color:var(--blue)}
+.pbar .bfill{border-radius:6px}
+.meter{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.meter .ml{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)}
+.meter .ml b{font-family:var(--mono);color:var(--ink)}
+.meter .mt{position:relative;height:7px;background:var(--fill);border-radius:4px}
+.meter .mf{height:100%;border-radius:4px}
+.meter .mf.r{background:var(--red)}.meter .mf.g{background:var(--green)}
+.meter .mt i{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);border-radius:1px}
+.meter .ms{font:10.5px var(--mono);color:var(--faint)}
+.q{display:flex;flex-direction:column;gap:8px}
+.q .ql{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{appearance:none;border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:500;cursor:pointer;transition:.12s}
+.opt:hover{border-color:var(--faint)}
+.opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+.fitwrap{display:grid;grid-template-columns:1fr 360px;gap:14px;align-items:start}
+.fitside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px);display:flex;flex-direction:column;gap:14px}
+.persona{display:flex;flex-direction:column;gap:14px}
+.persona .ph2{display:flex;gap:12px;align-items:center}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.persona .quote{font-size:14px;font-weight:600;padding-left:11px;border-left:2px solid var(--line2)}
+.cover{border-radius:12px;background:linear-gradient(160deg,#1B2A41,#0E1726);color:#E9D8B4;padding:18px;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4;max-width:100%;font-family:var(--sans)}
+.cover .c1{font:600 9px var(--mono);letter-spacing:.2em;opacity:.7}
+.cover .c2{font-size:17px;font-weight:700;letter-spacing:.06em;line-height:1.2;color:#F4E7CB}
+.cover .c3{font-size:10px;letter-spacing:.08em;opacity:.8}
+.samplecard{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;cursor:pointer;text-align:left;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;transition:.15s;width:100%}
+.samplecard:hover{border-color:var(--blue);box-shadow:0 2px 10px rgba(37,99,235,.08)}
+.filecard{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--soft);margin-bottom:14px}
+.filecard .fi{width:36px;height:44px;border-radius:6px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font:700 9.5px var(--mono);flex:none}
+.empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0 16px;text-align:center;color:var(--muted);font-size:12.5px}
+.empty .ei{width:40px;height:40px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--faint)}
+.stp.idle .t{color:var(--faint)}
+@media(max-width:960px){.hero{grid-template-columns:1fr}.hero .hr{border-left:0;border-top:1px solid var(--line)}.fitwrap{grid-template-columns:1fr}.fitside{position:static}}
+@media(max-width:600px){.qgrid{grid-template-columns:1fr}.pbar{grid-template-columns:110px 1fr 58px}.hero h1{font-size:23px}.hero .hl,.hero .hr{padding:18px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -219,6 +286,7 @@ h1,h2,h3{text-wrap:balance}
 </header>
 
 <main class="wrap" id="main"></main>
+<div class="tip" id="tip" hidden></div>
 
 <script>
 /* ============================ DATA ============================ */
@@ -309,37 +377,46 @@ const PASSES=[
 function vUpload(){
   return `<div class="view show">${phead("Analyse a project","Upload a project brochure. Fixit extracts every fact, checks it against RERA and public listings, runs the numbers and tells you who the project is really for.")}
   <div class="upgrid">
-    <div class="panel">
-      <label class="drop" id="drop" for="file">
-        <span class="dico">${ic("up","")}</span>
-        <h3>Drop a brochure here</h3>
-        <p>PDF, image or Word file. Floor plans and a cost sheet sharpen the result.</p>
-        <span class="btnrow"><span class="btn dark">Choose file</span><button class="btn" type="button" id="sampleBtn">Use sample brochure</button></span>
-        <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.ppt,.pptx" hidden>
-      </label>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="panel">
+        <label class="drop" id="drop" for="file">
+          <span class="dico">${ic("up","")}</span>
+          <h3>Drop a brochure here</h3>
+          <p>PDF, image or Word file, up to 50 MB. Floor plans and a cost sheet sharpen the result.</p>
+          <span class="btnrow"><span class="btn dark">Choose file</span></span>
+          <span class="btnrow">${["PDF","JPG / PNG","DOCX","PPTX"].map(x=>chip(x,"")).join("")}</span>
+          <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.ppt,.pptx" hidden>
+        </label>
+      </div>
+      <button class="samplecard" type="button" id="sampleBtn">
+        <div class="cover" aria-hidden="true"><span class="c1">SECTOR 103 · GURUGRAM</span><span class="c2">THE WESTIN<br>RESIDENCES</span><span class="c3">3 &amp; 4 BHK · BRANDED LIVING</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span class="crumb">SAMPLE BROCHURE</span><span style="font-weight:700;font-size:15px">The Westin Residences</span><span style="font-size:12.5px;color:var(--muted)">Branded residences on Dwarka Expressway. A good example: the brochure is short on facts, and public records disagree with it in six places.</span><span class="xlink" style="align-self:flex-start;margin-top:4px">Analyse sample →</span></div>
+      </button>
     </div>
     <div class="panel" id="runPanel">
-      <div class="subhead">Analysis pipeline</div>
+      <div id="fileSlot"><div class="empty"><span class="ei">${ic("doc","")}</span><b style="color:var(--ink)">Waiting for a document</b>These seven passes run on every brochure.</div></div>
       <div class="prog" id="prog"><div></div></div>
-      <div class="steps">${PASSES.map((p,i)=>`<div class="stp" id="ps${i}"><span class="n">${i+1}</span><div><div class="t">${p[0]}</div><div class="d"></div></div><span class="o"></span></div>`).join("")}</div>
+      <div class="steps">${PASSES.map((p,i)=>`<div class="stp idle" id="ps${i}"><span class="n">${i+1}</span><div><div class="t">${p[0]}</div><div class="d"></div></div><span class="o"></span></div>`).join("")}</div>
     </div>
-  </div>
-  ${shead("grid","What you get","7 views")}
-  <div class="grid4">
-    ${[["Overview","Verdict, who it's built for, four buyer-case tests"],["Fit check","Six questions → a personal fit score"],["True cost","All-in price, EMI, income needed, yield. All editable"],["Playbook","Ranked audiences, content themes, what to verify"]].map(x=>`<div class="panel"><div class="t-title" style="font-weight:700;font-size:13.5px">${x[0]}</div><p style="font-size:12.5px;color:var(--muted);margin-top:4px">${x[1]}</p></div>`).join("")}
   </div></div>`;
 }
+
 let timer=null;
 function bindUpload(){
   const drop=$("#drop"),file=$("#file");
-  file.onchange=()=>{if(file.files[0])run(file.files[0].name)};
+  file.onchange=()=>{if(file.files[0])run(file.files[0])};
   ["dragenter","dragover"].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add("over")}));
   ["dragleave","drop"].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove("over")}));
-  drop.addEventListener("drop",ev=>{const f=ev.dataTransfer.files[0];if(f)run(f.name)});
-  $("#sampleBtn").onclick=ev=>{ev.preventDefault();ev.stopPropagation();run("Westin_Residences_Brochure.pdf")};
+  drop.addEventListener("drop",ev=>{const f=ev.dataTransfer.files[0];if(f)run(f)});
+  $("#sampleBtn").onclick=ev=>{ev.preventDefault();run({name:"Westin_Residences_Brochure.pdf",size:6.8e6})};
 }
-function run(name){
-  srcName=name;$("#meta").textContent=name;
+
+function run(f){
+  srcName=f.name;$("#meta").textContent=f.name;
+  const ext=(f.name.split(".").pop()||"doc").toUpperCase().slice(0,4);
+  const mbs=f.size?(f.size/1e6).toFixed(1)+" MB":"";
+  $("#fileSlot").innerHTML=`<div class="filecard"><span class="fi">${ext}</span><div style="min-width:0"><div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name.replace(/[<>&]/g,"")}</div><div style="font:11px var(--mono);color:var(--faint)">${mbs} · uploaded just now</div></div></div>`;
+  document.querySelectorAll(".stp").forEach(x=>x.classList.remove("idle"));
   clearTimeout(timer);let i=0;
   const step=()=>{
     $("#prog div").style.width=(i/PASSES.length*100)+"%";
@@ -353,25 +430,69 @@ function run(name){
 }
 
 /* ============================ OVERVIEW ============================ */
-function vCard(n,t,v,d,mv){const k={PASS:"green",FAIL:"red",CONDITIONAL:"amber",UNTESTED:"muted"}[v];return `<div class="vcard ${k}"><div class="vk"><span>${n}</span>${chip(v)}</div><h3>${t}</h3><p>${d}</p><div class="mv">${mv}</div></div>`}
+function meter(label,val,thr,max,fmt){const bad=val>thr;return `<div class="meter"><div class="ml"><span>${label}</span><b style="color:var(--${bad?"red":"green"})">${fmt(val)}</b></div><div class="mt"><div class="mf ${bad?"r":"g"}" style="width:${Math.min(100,val/max*100)}%"></div><i style="left:${thr/max*100}%"></i></div><div class="ms">limit ${fmt(thr)}</div></div>`}
+function vCard(n,t,v,d,mv,extra){const k={PASS:"green",FAIL:"red",CONDITIONAL:"amber",UNTESTED:"muted"}[v];return `<div class="vcard ${k}"><div class="vk"><span>${n}</span>${chip(v)}</div><h3>${t}</h3><p>${d}</p>${extra||""}<div class="mv">${mv}</div></div>`}
+function scoreRing(v){const r=34,C=2*Math.PI*r,f=C*v/10;return `<svg width="84" height="84" viewBox="0 0 84 84" role="img" aria-label="Score ${v.toFixed(1)} of 10"><circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--fill2)" stroke-width="8"/><circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${f} ${C}" transform="rotate(-90 42 42)"/><text x="42" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="19" font-weight="600" fill="var(--ink)">${v.toFixed(1)}</text></svg>`}
+function priceChart(){
+  const rows=[["Sector 103 ready stock",S.rtm,"Resale and ready-to-move homes in Sectors 102–106"],["Recent corridor launches",S.newLaunch,"New launches on Dwarka Expressway, last ~6 months"],["Westin Residences",S.bsp,"Implied from ~₹7 Cr on ~2,900 sq ft","you"],["Golf Course Road (entry)",25000,"Lower end of the ₹25–45k premium band"]];
+  const max=Math.max(...rows.map(r=>r[1]))*1.05;
+  return `<div class="chart-h"><div><div class="ct">Price position</div><div class="cs">₹ per sq ft · the investor exit needs Westin at or below ready stock</div></div>${chip("Researched","")}</div>
+  ${rows.map(r=>`<div class="pbar ${r[3]||""}" data-tip="<b>${r[0]}</b><br>${inr(r[1])}/sq ft<br>${r[2]}"><span class="bl">${r[0]}</span><div class="btrack"><div class="bfill" style="width:${r[1]/max*100}%"></div></div><span class="bv">₹${(r[1]/1000).toFixed(1)}k</span></div>`).join("")}
+  <div style="font-size:12px;color:var(--muted);margin-top:10px">Westin is <b style="color:var(--ink)">+${Math.round((S.bsp/S.rtm-1)*100)}%</b> over ready stock and <b style="color:var(--ink)">+${Math.round((S.bsp/S.newLaunch-1)*100)}%</b> over recent launches.</div>`;
+}
+function cashChart(c){
+  const W=560,H=210,L=40,R=12,T=14,B=30,T0=Math.max(1,c.toPoss),Tm=Math.ceil(T0+4);
+  const X=m=>L+(W-L-R)*m/Tm,Y=p=>T+(H-T-B)*(1-p/100);
+  const pts=[[0,0],[0,S.slab1],[T0,S.slab1+S.slab2],[T0,100],[Tm,100]];
+  const path=pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join(" ");
+  let g="";
+  [0,25,50,75,100].forEach(p=>{g+=`<line x1="${L}" x2="${W-R}" y1="${Y(p)}" y2="${Y(p)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(p)+4}" text-anchor="end" font-size="10" fill="var(--faint)" font-family="JetBrains Mono, monospace">${p}%</text>`});
+  for(let m=0;m<=Tm;m+=12)g+=`<text x="${X(m)}" y="${H-10}" text-anchor="middle" font-size="10" fill="var(--faint)" font-family="JetBrains Mono, monospace">${m===0?"today":"+"+m+"m"}</text>`;
+  g+=`<path d="${path} L ${X(Tm)} ${Y(0)} L ${X(0)} ${Y(0)} Z" fill="var(--blue-soft)"/><path d="${path}" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>`;
+  g+=`<line x1="${L}" x2="${W-R}" y1="${Y(60)}" y2="${Y(60)}" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${L+8}" y="${Y(60)-6}" text-anchor="start" font-size="10.5" font-weight="600" fill="var(--red)">60% ceiling for investors &amp; renters</text>`;
+  g+=`<line x1="${X(T0)}" x2="${X(T0)}" y1="${T}" y2="${Y(0)}" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="3 3"/><text x="${X(T0)-6}" y="${T+10}" text-anchor="end" font-size="10.5" font-weight="600" fill="var(--green)">keys</text>`;
+  g+=`<circle id="cashDot" r="5" fill="var(--blue)" stroke="var(--panel)" stroke-width="2" style="display:none"/><rect id="cashHit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/>`;
+  return `<div class="chart-h"><div><div class="ct">When your money goes out</div><div class="cs">Cumulative share of the ${cr(c.allin)} all-in, for a buyer booking today</div></div>${chip(c.preHand+"% before keys","r")}</div>
+  <div class="chart"><svg id="cashSvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative payment schedule" data-t0="${T0}" data-tm="${Tm}" data-w="${W}" data-l="${L}" data-r="${R}" data-t="${T}" data-h="${H}" data-b="${B}">${g}</svg></div>`;
+}
 function vOverview(c){
   const h=bscore(SCORE.hood),p=bscore(SCORE.proj),comp=(h*45+p*35)/80;
   const over=Math.round((S.bsp/S.rtm-1)*100);
-  return phead(P.name,`${P.loc} · ${P.dev} · ${P.brand}`,`<span class="chip b">${c.phase[0]} · month ${Math.round(c.elapsed)}</span>`)+`
+  return `<div class="panel hero">
+    <div class="hl">
+      <span class="crumb">PROJECTS / GURUGRAM / SECTOR 103</span>
+      <div><h1>${P.name}</h1><div class="loc" style="margin-top:6px">${P.loc} · ${P.dev}</div></div>
+      <div class="chips">${chip("Westin · Marriott","v")}${chip("3 & 4 BHK","")}${chip("4 RERA registrations","g")}${chip("Possession 2028–31 · verify","a")}${chip(c.phase[0]+" · month "+Math.round(c.elapsed),"b")}</div>
+      <p class="verdict"><b>A branded home for affluent end users and NRIs with NCR roots. A weak bet for flip investors.</b> The Westin name carries real long-distance pull. At ${inr(S.bsp)}/sq ft with ${c.preHand}% due before handover, there's no quick investor exit and no case for a first home. Local demand has been worked. The live audience is out-of-state and overseas.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn dark" data-go="fit">Check if it fits you →</button><button class="btn" data-go="cost">See the true cost</button></div>
+    </div>
+    <div class="hr">
+      <div class="ring">${scoreRing(comp)}<div class="rt"><b>Fixit score</b><span>out of 10, on the 80% of weight assessed. Floor plans add the rest.</span></div></div>
+      <div class="subbars">
+        ${[["Neighbourhood",h,"45%"],["Project",p,"35%"]].map(x=>`<div class="brow" data-tip="<b>${x[0]}</b> · weight ${x[2]}<br>${x[1].toFixed(1)} / 10"><span class="bl">${x[0]}</span><div class="btrack"><div class="bfill" style="width:${x[1]*10}%"></div></div><span class="bv">${x[1].toFixed(1)}</span></div>`).join("")}
+        <div class="brow"><span class="bl" style="color:var(--faint)">Unit layout</span><div class="btrack"></div><span class="bv">—</span></div>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px;font-size:12px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Tests passed</span><b class="mono">${[c.t1,c.t2,c.t3,c.t4].filter(x=>x==="PASS").length} / 4</b></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Claims in conflict</span><b class="mono" style="color:var(--red)">3</b></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Claims to verify</span><b class="mono" style="color:var(--amber)">3</b></div>
+      </div>
+    </div>
+  </div>
   <div class="kpis">
     <div class="kpi"><div class="lab">All-in · ${S.cfg.replace("BHK"," BHK")}</div><div class="val">${cr(c.allin)}</div><div class="sub">base ${cr(c.base)}</div></div>
     <div class="kpi"><div class="lab">Monthly EMI</div><div class="val">${cr(c.emi)}</div><div class="sub">needs ${cr(c.minIncome)}/yr net</div></div>
     <div class="kpi"><div class="lab">Paid before keys</div><div class="val" style="color:${c.preHand>60?"var(--red)":"var(--green)"}">${c.preHand}%</div><div class="sub">${S.slab1}:${S.slab2}:${S.slab3} construction-linked</div></div>
     <div class="kpi"><div class="lab">Price vs ready stock</div><div class="val" style="color:var(--red)">+${over}%</div><div class="sub">${inr(S.bsp)} vs ${inr(S.rtm)}/sq ft</div></div>
-    <div class="kpi"><div class="lab">Composite score</div><div class="val">${comp.toFixed(1)}<span style="font-size:13px;color:var(--faint)">/10</span></div><div class="sub">on 80% base · no floor plans</div></div>
+    <div class="kpi"><div class="lab">Net rental yield</div><div class="val" style="color:var(--red)">${(c.netYield*100).toFixed(1)}%</div><div class="sub">gross ${(c.grossYield*100).toFixed(1)}% · directional</div></div>
   </div>
-  <div class="cta">${ic("target","ci")}<div><span class="lead">Verdict</span><b>A branded home for affluent end users and NRIs with NCR roots. A weak bet for flip investors.</b> The Westin name carries real long-distance pull, but at ${inr(S.bsp)}/sq ft with ${c.preHand}% due before handover, there is no quick investor exit and no case for a first home. At month ${Math.round(c.elapsed)}, local demand has been worked. The live audience is out-of-state and overseas.</div></div>
+  <div class="grid2" style="margin-top:14px"><div class="panel">${priceChart()}</div><div class="panel">${cashChart(c)}</div></div>
   ${shead("check","Buyer-case tests","does a case exist for each buyer?")}
   <div class="vcards">
-    ${vCard("Test 1","Investor exit",c.t1,`Needs ≤60% paid before handover, or a launch price at or below local ready stock.`,`${c.preHand}% pre-handover · +${over}% vs RTM`)}
-    ${vCard("Test 2","Brand & location pull",c.t2,`Westin travels at distance. Nothing on price compensates for not being able to visit.`,`Lead with brand + airport`)}
-    ${vCard("Test 3","First-home buyer",c.t3,`First-home buyers compare new launches. Recent corridor launches are ~${inr(S.newLaunch)}/sq ft.`,`+${Math.round((S.bsp/S.newLaunch-1)*100)}% vs recent launches`)}
-    ${vCard("Test 4","Past-buyer cross-sell",c.t4,`Whiteland's 24-month record wasn't in the brochure. Untested isn't passed.`,`One-to-one contact only`)}
+    ${vCard("Test 1","Investor exit",c.t1,`Needs a cheap-to-hold plan, or a launch price at or below local ready stock.`,`Neither route passes`,meter("Paid before keys",c.preHand,60,100,v=>v+"%"))}
+    ${vCard("Test 2","Brand & location pull",c.t2,`Westin travels at distance. Nothing on price makes up for not being able to visit.`,`Lead with brand + airport`)}
+    ${vCard("Test 3","First-home buyer",c.t3,`First-home buyers compare new launches with each other.`,`Price-tier mismatch`,meter("₹/sq ft vs launches",S.bsp,S.newLaunch,Math.max(S.bsp,S.newLaunch)*1.25,v=>"₹"+(v/1000).toFixed(1)+"k"))}
+    ${vCard("Test 4","Past-buyer cross-sell",c.t4,`Whiteland's 24-month record wasn't in the brochure. An untested gate isn't a passed gate.`,`One-to-one contact only`)}
   </div>
   <div class="grid2" style="margin-top:14px">
     <div class="panel"><div class="subhead">Built for</div><ul class="fitlist">
@@ -391,25 +512,28 @@ function vOverview(c){
   <div class="grid3">
     ${[["Possession date","Dec 2028, Dec 2030 and Sep 2031 across sources.","CONFLICT"],["Who runs the building","'Hotel-managed by Westin'. The operator contract isn't public, and the whole premium rests on it.","VERIFY"],["Unit & tower count","412 to 1,500 units and 5 or 13 towers. Density can't be scored.","CONFLICT"]].map(x=>`<div class="panel"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="t-title" style="font-weight:700">${x[0]}</span>${chip(x[2])}</div><p style="font-size:12.5px;color:var(--muted);margin-top:6px">${x[1]}</p></div>`).join("")}
   </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="xlink" data-go="fit">Check if it fits you →</button><button class="xlink" data-go="project" style="background:var(--fill);color:var(--ink)">See all claims →</button></div>`;
+  <div style="margin-top:14px"><button class="xlink" data-go="project">See all 8 claims →</button></div>`;
 }
 
 /* ============================ FIT CHECK ============================ */
+const QS=[["purpose","Why are you buying",[["live","To live in"],["hold","Long-term hold"],["flip","Sell near possession"],["rent","Rental income"],["first","My first home"]]],
+  ["house","Household size",[["2","1–2"],["4","3–4"],["6","5+"]]],
+  ["parents","Parents living with you",[["no","No"],["yes","Yes"]]],
+  ["own","Where you live now",[["own","I own"],["rent","I rent"]]],
+  ["nri","Where you're based",[["no","India"],["yes","Abroad, NCR roots"],["far","Abroad, no ties"]]],
+  ["move","Must move in within",[["2","2 years"],["4","4 years"],["flex","Flexible"]]]];
 function vFit(c){
-  const sel=(id,l,o)=>`<div class="fld"><label for="f_${id}">${l}</label><select id="f_${id}">${o.map(x=>`<option value="${x[0]}"${F[id]===x[0]?" selected":""}>${x[1]}</option>`).join("")}</select></div>`;
-  return phead("Is this project for you?","Six questions. The verdict uses the same tests and cost model as the rest of the dashboard, so changing the price or payment plan in True cost updates it too.")+`
-  <div class="panel"><div class="form">
-    ${sel("purpose","Why are you buying",[["live","To live in"],["hold","Long-term hold, 5+ yrs"],["flip","Sell around possession"],["rent","Rental income"],["first","My first home"]])}
-    ${sel("house","Household size",[["2","1–2 people"],["4","3–4 people"],["6","5 or more"]])}
-    ${sel("parents","Parents living with you",[["no","No"],["yes","Yes"]])}
-    ${sel("own","Where you live now",[["own","I own my home"],["rent","I rent"]])}
-    ${sel("nri","Where you're based",[["no","India"],["yes","Abroad, NCR/Punjab roots"],["far","Abroad, no regional ties"]])}
-    ${sel("move","Must move in within",[["2","2 years"],["4","4 years"],["flex","Flexible"]])}
-    <div class="fld"><label for="f_income">Net income, ₹ lakh/yr</label><input class="in" id="f_income" type="number" min="0" value="${F.income}"></div>
-    <div class="fld"><label for="f_budget">All-in budget, ₹ Cr</label><input class="in" id="f_budget" type="number" min="0" step="0.5" value="${F.budget}"></div>
-  </div></div>
-  <div class="grid2 fitgrid" style="grid-template-columns:260px 1fr;margin-top:14px" id="fitOut"></div>`;
+  return phead("Is this project for you?","Answer six questions. The verdict uses the same tests and cost model as the rest of the dashboard. Change the price or payment plan in True cost and it updates here too.")+`
+  <div class="fitwrap">
+    <div class="panel"><div class="qgrid">
+      ${QS.map(q=>`<div class="q"><span class="ql">${q[1]}</span><div class="opts" role="group" aria-label="${q[1]}">${q[2].map(o=>`<button class="opt${F[q[0]]===o[0]?" on":""}" data-q="${q[0]}" data-v="${o[0]}">${o[1]}</button>`).join("")}</div></div>`).join("")}
+      <div class="fld"><label for="f_income">Net household income · ₹ lakh / yr</label><input class="in" id="f_income" type="number" min="0" value="${F.income}"></div>
+      <div class="fld"><label for="f_budget">All-in budget · ₹ crore</label><input class="in" id="f_budget" type="number" min="0" step="0.5" value="${F.budget}"></div>
+    </div></div>
+    <div class="fitside" id="fitOut"></div>
+  </div>`;
 }
+
 function fitHTML(c){
   const R=[];let s=70;const add=(k,t,d)=>{R.push([k,t]);s+=d};
   const need4=F.parents==="yes"||F.house==="6",cfg=need4?"4BHK":"3BHK",cf=CONFIGS[cfg];
@@ -484,6 +608,17 @@ function vProject(c){
 }
 
 /* ============================ COST ============================ */
+function waterfall(c){
+  const steps=[["Base price",0,c.base,"bar"],["Other charges",c.base,c.other,"amber"],["GST",c.base+c.other,c.gst,"amber"],["Stamp + registry",c.sub+c.gst,c.stamp,"amber"],["All-in",0,c.allin,"blue"]];
+  const W=560,H=230,L=12,R=12,T=26,B=34,max=c.allin*1.06,bw=(W-L-R)/steps.length;
+  const Y=v=>T+(H-T-B)*(1-v/max);let g=`<line x1="${L}" x2="${W-R}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line2)"/>`;
+  steps.forEach((s,i)=>{const x=L+i*bw+bw*.18,w=bw*.64,y0=Y(s[1]+s[2]),y1=Y(s[1]);
+    g+=`<rect x="${x}" y="${y0}" width="${w}" height="${Math.max(2,y1-y0)}" rx="4" fill="var(--${s[3]})" data-tip="<b>${s[0]}</b><br>${cr(s[2])}${i&&i<4?" · +"+(s[2]/c.base*100).toFixed(1)+"% of base":""}"/>`;
+    if(i<steps.length-1){const nx=L+(i+1)*bw+bw*.18;g+=`<line x1="${x+w}" x2="${nx}" y1="${y0}" y2="${y0}" stroke="var(--faint)" stroke-dasharray="2 3"/>`}
+    g+=`<text x="${x+w/2}" y="${y0-7}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)" font-family="JetBrains Mono, monospace">${i&&i<4?"+":""}${cr(s[2])}</text>`;
+    g+=`<text x="${x+w/2}" y="${H-12}" text-anchor="middle" font-size="11" fill="var(--muted)">${s[0]}</text>`;});
+  return `<div class="chart-h"><div><div class="ct">From headline to all-in</div><div class="cs">${S.cfg.replace("BHK"," BHK")} · charges, GST and stamp duty add ${((c.allin/c.base-1)*100).toFixed(0)}%</div></div>${chip("Computed","b")}</div><div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cost build-up waterfall">${g}</svg></div>`;
+}
 function vCost(c){
   const f=(id,l,step)=>`<div class="fld"><label for="m_${id}">${l}</label><input class="in" id="m_${id}" type="number" step="${step||1}" value="${S[id]}"></div>`;
   return phead("True cost","The ₹7 Cr headline is the base price. Buyers should qualify against the all-in figure. Amber fields are inputs, and every view recalculates when you change them.",`<div class="seg" role="group" aria-label="Configuration">${Object.keys(CONFIGS).map(k=>`<button data-cfg="${k}" class="${S.cfg===k?"on":""}">${k.replace("BHK"," BHK")}</button>`).join("")}</div>`)+`
@@ -491,7 +626,7 @@ function vCost(c){
     <div class="kpi"><div class="lab">All-in cost</div><div class="val">${cr(c.allin)}</div><div class="sub">+${((c.allin/c.base-1)*100).toFixed(0)}% over base</div></div>
     <div class="kpi"><div class="lab">Due at booking</div><div class="val">${cr(c.allin*S.slab1/100)}</div><div class="sub">${S.slab1}% up front</div></div>
     <div class="kpi"><div class="lab">Monthly EMI</div><div class="val">${cr(c.emi)}</div><div class="sub">${S.rate}% · ${S.tenure} yrs · 75% loan</div></div>
-    <div class="kpi"><div class="lab">Net yield</div><div class="val" style="color:var(--red)">${(c.netYield*100).toFixed(1)}%</div><div class="sub">gross ${(c.grossYield*100).toFixed(1)}% · directional</div></div>
+    <div class="kpi"><div class="lab">Income needed</div><div class="val">${cr(c.minIncome)}</div><div class="sub">net per year · EMI ≤ 40%</div></div>
   </div>
   <div class="grid2" style="grid-template-columns:340px 1fr;margin-top:14px" id="costGrid">
     <div class="panel">
@@ -508,7 +643,13 @@ function vCost(c){
         ${f("rtm","Ready stock, ₹/sq ft",500)}${f("newLaunch","Recent launches, ₹/sq ft",500)}${f("rent","Monthly rent, ₹",5000)}
       </div>
     </div>
-    <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Cost chain · ${S.cfg.replace("BHK"," BHK")}</th><th class="num">Amount</th><th>Basis</th></tr></thead><tbody>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div class="panel">${waterfall(c)}</div>
+      <div class="panel">${cashChart(c)}</div>
+    </div>
+  </div>
+  ${shead("rupee","Cost chain","every line is a formula")}
+  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Line</th><th class="num">Amount</th><th>Basis</th></tr></thead><tbody>
       <tr><td>Super area</td><td class="num ink">${S.super.toLocaleString("en-IN")} sq ft</td><td>${src("R")}</td></tr>
       <tr><td>Base price</td><td class="num ink">${cr(c.base)}</td><td>${src("C")}</td></tr>
       <tr><td>Other charges @ ${S.other}%</td><td class="num ink">${cr(c.other)}</td><td>Assumed. Replace with cost sheet</td></tr>
@@ -519,9 +660,8 @@ function vCost(c){
       <tr><td>Paid before possession (${c.preHand}%)</td><td class="num ink">${cr(c.allin*c.preHand/100)}</td><td>Committed with no keys</td></tr>
       <tr><td>Loan (75% of agreement value)</td><td class="num ink">${cr(c.loan)}</td><td>Banks fund agreement value</td></tr>
       <tr class="tot"><td>Monthly EMI</td><td class="num">${cr(c.emi)}</td><td></td></tr>
-      <tr><td>Net income needed</td><td class="num ink">${cr(c.minIncome)}/yr</td><td>EMI ≤ 40% of net</td></tr>
-    </tbody></table></div>
-  </div>
+      <tr><td>Gross / net rental yield</td><td class="num ink">${(c.grossYield*100).toFixed(1)}% / ${(c.netYield*100).toFixed(1)}%</td><td>${src("D")}</td></tr>
+  </tbody></table></div>
   ${shead("users","Who can and can't carry this","7 conditions")}
   <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Buyer condition</th><th>Verdict</th><th>Action</th></tr></thead><tbody>
     ${[["Already owns, selling to fund","PASS",`Sale proceeds cover the ${S.slab1}% booking. Qualify on sale timeline.`],["Business owner, lumpy income","PASS","Construction-linked calls suit cash-rich owners."],["Salaried, EMI above 45% of income","FAIL","Qualify out at enquiry, not at booking."],["Renting, lease ends within 24 months","FAIL",`Rent plus instalments for ${Math.max(0,Math.round(c.toPoss))} months. Route to ready stock.`],["NRI","PASS","Confirm lender and repatriation terms."],["Retiree","CONDITIONAL","Cash buyers only. Loan tenure capped by age."],["Yield-seeking investor","FAIL",`${(c.netYield*100).toFixed(1)}% net is below a deposit rate.`]].map(r=>`<tr><td class="t-title">${r[0]}</td><td>${chip(r[1])}</td><td>${r[2]}</td></tr>`).join("")}
@@ -532,9 +672,9 @@ function vCost(c){
 function vTiming(c){
   const over=Math.round((S.bsp/S.rtm-1)*100),overNL=Math.round((S.bsp/S.newLaunch-1)*100);
   const who=[["Investors only","Local investors, past buyers, residents"],["Investors only","Nearby cities, boundary states"],["Mostly investors + deal-hunting end users","Out-of-state investors & NRIs with Haryana/Delhi roots"],["Mostly end users + rental investors","End users who can see the building"],["End users only","The investor case has expired"]];
-  const test=(n,t,rows,v,why)=>`<div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px"><div><span class="pcode" style="font-family:var(--mono);font-size:11px;color:var(--faint)">${n}</span><div class="t-title" style="font-weight:700;font-size:14.5px">${t}</div></div>${chip(v)}</div>
+  const test=(n,t,rows,v,why,m)=>`<div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px"><div><span class="pcode" style="font-family:var(--mono);font-size:11px;color:var(--faint)">${n}</span><div class="t-title" style="font-weight:700;font-size:14.5px">${t}</div></div>${chip(v)}</div>
     <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Condition</th><th>This project</th><th>Result</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="t-title">${r[0]}<span class="t-sub">${r[1]}</span></td><td class="mono" style="font-size:11.5px">${r[2]}</td><td>${chip(r[3])}</td></tr>`).join("")}</tbody></table></div>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:10px">${why}</p></div>`;
+    ${m||""}<p style="font-size:12.5px;color:var(--muted);margin-top:10px">${why}</p></div>`;
   return phead("Timing & buyer-case tests","Developers work their easiest audiences first. By month four the local lists have been called. Where the project sits in its sales cycle decides who is still worth targeting.")+`
   <div class="kpis k4">
     <div class="kpi"><div class="lab">Months since launch</div><div class="val">${c.elapsed.toFixed(1)}</div><div class="sub">basis: RERA reg. 18 Jun 2024</div></div>
@@ -549,9 +689,9 @@ function vTiming(c){
   ${note("<b>Your closest competitor is your own launch buyers.</b> Launch investors hold paper gains while construction calls keep coming. Some will sell or assign below the current price list, so track owner-listed resale every month.",true)}
   ${shead("check","Buyer-case tests","a fail excludes the buyer type")}
   <div class="grid2">
-  ${test("Test 1","Investor exit",[["A · Holding-friendly plan","≤60% before handover",`${c.preHand}%`,c.routeA?"PASS":"FAIL"],["B · Price vs ready stock","launch ≤ RTM rate",`${inr(S.bsp)} vs ${inr(S.rtm)} (+${over}%)`,c.routeB?"PASS":"FAIL"]],c.t1,c.t1==="FAIL"?"Neither route passes. The investors who remain are multi-year holders betting on the branded premium, which needs a different pitch from a flip.":"At least one exit route works.")}
+  ${test("Test 1","Investor exit",[["A · Holding-friendly plan","≤60% before handover",`${c.preHand}%`,c.routeA?"PASS":"FAIL"],["B · Price vs ready stock","launch ≤ RTM rate",`${inr(S.bsp)} vs ${inr(S.rtm)} (+${over}%)`,c.routeB?"PASS":"FAIL"]],c.t1,c.t1==="FAIL"?"Neither route passes. The investors who remain are multi-year holders betting on the branded premium, which needs a different pitch from a flip.":"At least one exit route works.",`<div class="grid2" style="gap:14px">${meter("Paid before keys",c.preHand,60,100,v=>v+"%")}${meter("₹/sq ft vs ready stock",S.bsp,S.rtm,Math.max(S.bsp,S.rtm)*1.2,v=>"₹"+(v/1000).toFixed(1)+"k")}</div>`)}
   ${test("Test 2","Brand & location pull",[["Brand pull","carries at distance","Westin global; Whiteland regional","PASS"],["Location legibility","verifiable in one search","Dwarka Expressway known; no metro","PARTIAL"],["Price or plan advantage","compensates","Fails Test 1",c.t1==="FAIL"?"FAIL":"PASS"],["Airport proximity","genuine, in minutes","IGI ~15–20 min","PASS"]],c.t2,"The brand stands in for a site visit. Lead overseas creative with brand and airport, never with price.")}
-  ${test("Test 3","First-home buyer",[["A · Competitive with launches","≤ recent launches",`${inr(S.bsp)} vs ${inr(S.newLaunch)} (+${overNL}%)`,c.condA?"PASS":"FAIL"],["B · Carryable while renting","≤60% before handover",`${c.preHand}%`,c.condB?"PASS":"FAIL"]],c.t3,c.t3==="FAIL"?"Condition A fails on price tier, which rules out this segment. Don't write content for it.":"Price holds. A payment-plan restructure would open this segment.")}
+  ${test("Test 3","First-home buyer",[["A · Competitive with launches","≤ recent launches",`${inr(S.bsp)} vs ${inr(S.newLaunch)} (+${overNL}%)`,c.condA?"PASS":"FAIL"],["B · Carryable while renting","≤60% before handover",`${c.preHand}%`,c.condB?"PASS":"FAIL"]],c.t3,c.t3==="FAIL"?"Condition A fails on price tier, which rules out this segment. Don't write content for it.":"Price holds. A payment-plan restructure would open this segment.",meter("₹/sq ft vs recent launches",S.bsp,S.newLaunch,Math.max(S.bsp,S.newLaunch)*1.2,v=>"₹"+(v/1000).toFixed(1)+"k"))}
   ${test("Test 4","Past-buyer cross-sell",[["Sentiment, 24 months","positive or neutral","Not supplied","UNTESTED"],["Prior-phase delivery","no stalled phases","Not supplied","UNTESTED"],["Counter-evidence","debt repaid, deliveries","'Zero-debt' (reported)","VERIFY"]],"UNTESTED","Until HARERA history and reviews are checked, contact past Whiteland buyers one-to-one through senior sales. No broadcasts or resident events.")}
   </div>
   <div class="cta">${ic("bulb","ci")}<div><span class="lead">The one decision</span><b>Move to a 20:80 or 25:75 subvention plan.</b> It passes Test 1 Route A and gives out-of-state buyers the price-or-plan advantage Test 2 is missing. It's the highest-return commercial change available.</div></div>`;
@@ -569,20 +709,20 @@ function tl(c){
 
 /* ============================ BUYERS ============================ */
 function vBuyers(c){
-  const per=[["Need","Owns a DDA flat in Dwarka. Outgrown it, won't move far from the airport or family.","Lives in Dubai, family in Delhi. Wants a home that runs itself."],["Desire","A hotel lobby every evening. Concierge, spa, a club to host business friends.","Landing at T3 and being home in 20 minutes, the apartment ready."],["Aspiration","\"We live at the Westin.\"","A branded asset the family uses and the children inherit."],["Decides on","Brand › airport › size › all-in price","Operator › possession certainty › brand › resale"],["Main objection","\"Why ₹24k here when ready flats nearby are ₹15k?\"","\"Who runs it after handover, in writing?\""],["What closes them","Branded service list + a measured airport drive","Operator agreement + family site visit on video"],["What loses them","Base price quoted, all-in sprung later","Vague possession dates"],["Channel","WhatsApp from senior RM, referrals","Gulf/UK diaspora media, YouTube, search"]];
+  const P2=[{n:"Rajiv & Meera Khanna",i:"RK",bg:"var(--blue-soft)",fg:"var(--blue)",sub:"52 · business owner · Dwarka Sec 12 → 4 BHK",q:"\"We live at the Westin.\"",rows:[["Need","Owns a DDA flat in Dwarka. Outgrown it, won't move far from the airport or family."],["Desire","A hotel lobby every evening. Concierge, spa, a club to host business friends."],["Decides on","Brand › airport › size › all-in price"],["Main objection","\"Why ₹24k here when ready flats nearby are ₹15k?\""],["What closes them","Branded service list + a measured airport drive"],["What loses them","Base price quoted, all-in sprung later"],["Channel","WhatsApp from senior RM, referrals"]]},
+    {n:"Aman Sethi",i:"AS",bg:"var(--violet-soft)",fg:"var(--violet)",sub:"44 · Dubai-based · family in Janakpuri → 3 BHK",q:"\"A home in India that runs itself.\"",rows:[["Need","Lives in Dubai, family in Delhi. Wants a home that doesn't need him present."],["Desire","Landing at T3 and being home in 20 minutes, the apartment ready."],["Decides on","Operator › possession certainty › brand › resale"],["Main objection","\"Who runs it after handover, in writing?\""],["What closes them","Operator agreement + family site visit on video"],["What loses them","Vague possession dates"],["Channel","Gulf/UK diaspora media, YouTube, search"]]}];
   const feed=[["Dwarka, Delhi (Sec 6–23)","DDA / CGHS","−10 min","₹14–20k","Upgrade","\"Same airport. Twenty minutes. A building run by Westin.\"","0.25"],["West Delhi: Janakpuri, Rajouri, Punjabi Bagh","Builder floors","+5–15 min","₹18–30k","Parity","\"Keep the neighbourhood. Add a concierge.\"","0.50"],["Palam Vihar / Sector 23","Ageing high-rise","−5 min","₹10–14k","Upgrade","\"The upgrade you've waited for is 10 minutes away.\"","0.50"],["New Gurugram (Sec 82–95)","Mid-premium","+10 min","₹9–13k","Upgrade","\"Move up, and closer to the airport.\"","0.50"],["Launch-investor resale","Assignments","—","below list","—","Competitor row: track monthly","1.00"],["Golf Course Road / Ext.","Premium high-rise","+15–25 min","₹25–45k","CORRECTED","Not an upgrade audience. Portfolio only","0.25"]];
   const glob=[["UAE","NRI",9],["Punjab: Ludhiana, Jalandhar, Chandigarh","Out-of-state HNI",7],["UK","NRI",7],["USA / Canada","NRI",6],["Singapore","NRI / expat",4],["Jaipur","Out-of-state HNI",4]];
   const fam=[["Household","3–4 (3 BHK) · 5–6 (4 BHK)","Single or couple buying for space"],["Life stage","Established, 40–60","Young family needing walkable schools now"],["Parents","Resident parents → 4 BHK","—"],["Work pattern","Frequent flyers, owners, flexible CXOs","Daily metro commute to Cyber City"],["Ownership","Owns now; upgrade or second home","Renting with no sale to fund booking"]];
   return phead("Buyers","Who lives here, where they live today, and where demand comes from. Local markets feed this project only if their own prices are at or below ₹"+(S.bsp/1000).toFixed(0)+"k/sq ft.")+`
   ${shead("users","Personas","derived from the layout and price")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th></th><th>Rajiv & Meera Khanna · 4 BHK<span class="t-sub" style="text-transform:none;letter-spacing:0;font-weight:500">52 · business owner · Dwarka Sec 12</span></th><th>Aman Sethi · 3 BHK<span class="t-sub" style="text-transform:none;letter-spacing:0;font-weight:500">44 · Dubai-based · family in Janakpuri</span></th></tr></thead><tbody>
-  ${per.map(r=>`<tr><td class="t-title" style="white-space:nowrap">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
+  <div class="grid2">${P2.map(p=>`<div class="panel persona"><div class="ph2"><span class="avatar" style="background:${p.bg};color:${p.fg}">${p.i}</span><div><div style="font-weight:700;font-size:15px">${p.n}</div><div style="font-size:12px;color:var(--faint)">${p.sub}</div></div></div><div class="quote">${p.q}</div><dl class="kv">${p.rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl></div>`).join("")}</div>
   ${shead("pin","Feeder localities","ranked by price tier, then commute")}
   <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Locality</th><th>Stock</th><th>Commute Δ</th><th>Home value</th><th>Size</th><th>Lead message</th><th class="num">Phase fit</th></tr></thead><tbody>
   ${feed.map(r=>`<tr class="${r[4]==="CORRECTED"?"x":""}"><td class="t-title">${r[0]}</td><td>${r[1]}</td><td class="mono">${r[2]}</td><td class="mono">${r[3]}</td><td>${r[4]==="CORRECTED"?chip("CORRECTED"):r[4]==="—"?"—":chip(r[4],r[4]==="Upgrade"?"g":"")}</td><td class="ink">${r[5]}</td><td class="num">${r[6]}</td></tr>`).join("")}</tbody></table></div>
   <div class="grid2" style="margin-top:14px">
     <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><div class="subhead" style="margin:0">Out-of-state & overseas demand</div>${chip("Directional","a")}</div>
-      <div class="bars" style="margin-top:12px">${glob.map(g=>`<div class="brow"><span class="bl"><b>${g[0]}</b> <span style="color:var(--faint)">${g[1]}</span></span><div class="btrack"><div class="bfill b" style="width:${g[2]*10}%"></div></div><span class="bv">${g[2]}</span></div>`).join("")}</div>
+      <div class="bars" style="margin-top:12px">${glob.map(g=>`<div class="brow" data-tip="<b>${g[0]}</b> · ${g[1]}<br>Relative index ${g[2]} / 10"><span class="bl"><b>${g[0]}</b> <span style="color:var(--faint)">${g[1]}</span></span><div class="btrack"><div class="bfill b" style="width:${g[2]*10}%"></div></div><span class="bv">${g[2]}</span></div>`).join("")}</div>
       ${note("Qualifier for this phase: a past record of investing in Haryana or Delhi, or roots there. Replace with search geo data and CRM source cities as enquiries arrive.")}</div>
     <div class="panel tbl-wrap"><div class="subhead">Family fit</div><table class="tbl"><thead><tr><th></th><th>Suited</th><th>Not suited</th></tr></thead><tbody>
       ${fam.map(r=>`<tr><td class="t-title">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
@@ -614,9 +754,16 @@ function vPlaybook(c){
 /* ============================ BINDINGS ============================ */
 function bind(c){
   document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+  const cs=$("#cashSvg");
+  if(cs){const hit=$("#cashHit"),dot=$("#cashDot"),d=cs.dataset,T0=+d.t0,Tm=+d.tm,W=+d.w,L=+d.l,R=+d.r,T=+d.t,H=+d.h,B=+d.b;
+    hit.addEventListener("mousemove",e=>{const r=cs.getBoundingClientRect(),sx=(e.clientX-r.left)*W/r.width;let m=Math.max(0,Math.min(Tm,(sx-L)/(W-L-R)*Tm));
+      const pct=m>=T0?100:S.slab1+S.slab2*m/T0;dot.setAttribute("cx",L+(W-L-R)*m/Tm);dot.setAttribute("cy",T+(H-T-B)*(1-pct/100));dot.style.display="";
+      tip(e,`<b>${m<0.5?"Today":"+"+Math.round(m)+" months"}</b><br>${pct.toFixed(0)}% paid · ${cr(c.allin*pct/100)}${m>=T0?"<br>Keys handed over":""}`)});
+    hit.addEventListener("mouseleave",()=>{dot.style.display="none";untip()});}
   if(cur==="fit"){
     const out=$("#fitOut");out.innerHTML=fitHTML(c);
-    document.querySelectorAll("#main select,#main input").forEach(el=>el.addEventListener("input",()=>{F[el.id.slice(2)]=el.value;out.innerHTML=fitHTML(compute())}));
+    document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{F[b.dataset.q]=b.dataset.v;document.querySelectorAll(`.opt[data-q="${b.dataset.q}"]`).forEach(x=>x.classList.toggle("on",x===b));out.innerHTML=fitHTML(compute())});
+    document.querySelectorAll("#main input").forEach(el=>el.addEventListener("input",()=>{F[el.id.slice(2)]=el.value;out.innerHTML=fitHTML(compute())}));
   }
   if(cur==="cost"){
     document.querySelectorAll("#main input").forEach(el=>el.addEventListener("change",()=>{S[el.id.slice(2)]=+el.value||0;const id=el.id;render();const n=document.getElementById(id);if(n)n.focus()}));
@@ -625,6 +772,10 @@ function bind(c){
   }
   if(cur==="timing"){$("#possSel").onchange=e=>{S.possession=e.target.value;render()}}
 }
+function tip(e,html){const t=$("#tip");t.innerHTML=html;t.hidden=false;const w=t.offsetWidth,h=t.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;t.style.left=x+"px";t.style.top=y+"px"}
+function untip(){$("#tip").hidden=true}
+document.addEventListener("mousemove",e=>{const el=e.target.closest&&e.target.closest("[data-tip]");if(el)tip(e,el.dataset.tip);else if(!e.target.closest||!e.target.closest("#cashHit"))untip()});
+
 $("#upBtn").onclick=()=>{analysed=false;cur="upload";$("#meta").textContent="No document";renderTabs();render()};
 
 renderTabs();render();
