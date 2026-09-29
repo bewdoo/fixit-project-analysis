@@ -10,267 +10,208 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#FFFFFF;--panel:#FFFFFF;--ink:#18181B;--muted:#71717A;--faint:#A1A1AA;
-  --line:#ECECEE;--line2:#E4E4E7;--fill:#EEF0F2;--fill2:#E2E5E9;--bar:#3F3F46;
+  --bg:#FFFFFF;--soft:#FAFAFA;--panel:#FFFFFF;--ink:#18181B;--muted:#62626B;--faint:#A1A1AA;
+  --line:#ECECEE;--line2:#E4E4E7;--fill:#F1F2F4;--fill2:#E4E6EA;--bar:#3F3F46;
   --green:#16A34A;--green-soft:#ECFDF3;--amber:#D97706;--amber-soft:#FEF3E2;
   --violet:#7C3AED;--violet-soft:#F3EEFE;--blue:#2563EB;--blue-soft:#EBF1FE;
-  --red:#DC2626;--red-soft:#FEECEC;--topbar:rgba(255,255,255,.9);
-  --cta:#18181B;--cta-ink:#FFFFFF;--radius:16px;
+  --red:#DC2626;--red-soft:#FEECEC;--radius:16px;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-button,input,select{font:inherit;color:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 h1,h2,h3,p{margin:0}
 h1,h2,h3{text-wrap:balance}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
 /* top bar */
-.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--topbar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.topbar-in{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:18px;min-height:58px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.01em;flex:none}
-.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--ink)}
-.brand small{font-weight:500;color:var(--faint);font-size:11.5px}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:18px;min-height:60px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.01em;flex:none}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--ink)}
 .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
 .tabs::-webkit-scrollbar{display:none}
-.tab-btn{appearance:none;border:0;background:none;font-size:13.5px;font-weight:600;color:var(--muted);padding:8px 13px;border-radius:9px;cursor:pointer;letter-spacing:-.01em;white-space:nowrap;transition:.13s}
+.tab-btn{appearance:none;border:0;background:none;font-size:14px;font-weight:600;color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:.13s}
 .tab-btn:hover:not(:disabled){color:var(--ink);background:var(--fill)}
 .tab-btn.active{color:var(--ink);background:var(--fill2)}
-.tab-btn:disabled{opacity:.4;cursor:default}
-.topbar-meta{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;flex:none}
-.upbtn{appearance:none;border:0;background:var(--cta);color:var(--cta-ink);font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:9px;cursor:pointer;white-space:nowrap;flex:none}
-@media(max-width:860px){.topbar-in{flex-wrap:wrap;gap:8px 14px;padding-block:10px}.tabs{order:3;flex-basis:100%}.topbar-meta{display:none}}
+.tab-btn:disabled{opacity:.35;cursor:default}
+.upbtn{appearance:none;border:1px solid var(--line2);background:var(--panel);font-size:13px;font-weight:600;padding:8px 13px;border-radius:10px;cursor:pointer;white-space:nowrap;flex:none}
+.upbtn:hover{background:var(--fill)}
+@media(max-width:820px){.topbar-in{flex-wrap:wrap;gap:8px 14px;padding-block:10px}.tabs{order:3;flex-basis:100%}}
 
 /* layout */
-.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:26px 90px}
-.view{display:none;animation:fade .28s ease}
-.view.show{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.phead{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin:2px 2px 16px}
-.phead h1{font-size:21px;font-weight:800;letter-spacing:-.02em}
-.phead p{margin-top:5px;color:var(--muted);font-size:13px;max-width:760px}
-.shead{display:flex;align-items:center;gap:9px;margin:30px 2px 14px}
-.shead h2{font-size:15.5px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
-.shead .ic{width:17px;height:17px;color:var(--muted);flex:none}
-.shead .rule{flex:1;height:1px;background:var(--line);min-width:20px}
-.shead .tag{font-size:11.5px;color:var(--faint);font-family:var(--mono);white-space:nowrap}
-@media(max-width:600px){.shead{flex-wrap:wrap}.shead .rule{display:none}.shead h2{white-space:normal}}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 90px}
+.view{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.phead{margin:0 2px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.phead h1{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.phead p{margin-top:6px;color:var(--muted);font-size:15px;max-width:640px}
+.sh{font-size:18px;font-weight:700;letter-spacing:-.01em;margin:36px 2px 14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0;box-shadow:0 1px 2px rgba(24,24,27,.04)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.subhead{font-size:12px;font-weight:600;color:var(--muted);margin:0 0 11px}
+.small{font-size:13px;color:var(--muted)}
+.label{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
 
-/* kpis */
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.kpis.k4{grid-template-columns:repeat(4,1fr)}
-.kpi{padding:15px 17px;border-left:1px solid var(--line);min-width:0}
-.kpi:first-child{border-left:0}
-.kpi .lab{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--faint)}
-.kpi .val{font-family:var(--mono);font-size:23px;font-weight:600;margin-top:7px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.kpi .val.txt{font-family:var(--sans);font-weight:700;font-size:20px}
-.kpi .sub{font-size:11.5px;color:var(--muted);margin-top:3px}
-.kpi select{border:1px solid var(--line2);border-radius:7px;background:var(--fill);padding:2px 5px;font-size:11px;max-width:100%}
+/* big answer */
+.answer{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 28px}
+.answer .kicker{font-size:13px;color:var(--muted)}
+.answer h1{font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-top:4px}
+.answer .say{font-size:17px;line-height:1.55;margin-top:14px;max-width:62ch}
+.answer .say b{font-weight:700}
+.score{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;min-width:150px}
+.score .sl{font-size:14px;font-weight:700}
+.score .ss{font-size:12px;color:var(--faint)}
 
-/* verdict cards */
-.vcards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.vcard{background:var(--panel);border:1px solid var(--line);border-left-width:3px;border-radius:14px;padding:15px 16px;display:flex;flex-direction:column}
-.vcard .vk{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;justify-content:space-between;gap:7px}
-.vcard h3{font-size:14.5px;font-weight:700;margin:8px 0 5px;letter-spacing:-.01em}
-.vcard p{font-size:12.5px;color:var(--muted);flex:1}
-.vcard .mv{margin-top:10px;font-size:12px;font-weight:600;padding-top:9px;border-top:1px solid var(--line)}
-.vcard.red{border-left-color:var(--red)}.vcard.red .vk,.vcard.red .mv{color:var(--red)}
-.vcard.green{border-left-color:var(--green)}.vcard.green .vk,.vcard.green .mv{color:var(--green)}
-.vcard.amber{border-left-color:var(--amber)}.vcard.amber .vk,.vcard.amber .mv{color:var(--amber)}
-.vcard.muted{border-left-color:var(--faint)}.vcard.muted .vk,.vcard.muted .mv{color:var(--muted)}
-
-/* chips */
-.chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);background:var(--fill);white-space:nowrap}
-.chip.g{color:var(--green);background:var(--green-soft);border-color:transparent}
-.chip.r{color:var(--red);background:var(--red-soft);border-color:transparent}
-.chip.a{color:var(--amber);background:var(--amber-soft);border-color:transparent}
-.chip.b{color:var(--blue);background:var(--blue-soft);border-color:transparent}
-.chip.v{color:var(--violet);background:var(--violet-soft);border-color:transparent}
+/* key numbers */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:14px}
+.num{padding:18px 20px;border-left:1px solid var(--line);min-width:0}
+.num:first-child{border-left:0}
+.num .nl{font-size:13px;color:var(--muted);font-weight:500}
+.num .nv{font-family:var(--mono);font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em}
+.num .nv.t{font-family:var(--sans);font-weight:800;font-size:24px}
+.num .ns{font-size:13px;color:var(--faint);margin-top:2px}
 
 /* lists */
-.fitlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
-.fitlist li{display:grid;grid-template-columns:18px 1fr;gap:9px;font-size:12.5px;color:var(--muted);line-height:1.5}
-.fitlist li b{color:var(--ink);font-weight:600}
-.mk{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 10px var(--mono);margin-top:1px}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.list li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:15px;line-height:1.5}
+.list li span{color:var(--muted)}
+.list li b{color:var(--ink);font-weight:600}
+.mk{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--sans)}
 .mk.y{background:var(--green-soft);color:var(--green)}
 .mk.n{background:var(--red-soft);color:var(--red)}
 .mk.c{background:var(--amber-soft);color:var(--amber)}
+.colhead{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;margin-bottom:16px}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.badge.g{background:var(--green-soft);color:var(--green)}
+.badge.r{background:var(--red-soft);color:var(--red)}
+.badge.a{background:var(--amber-soft);color:var(--amber)}
+.badge.n{background:var(--fill);color:var(--muted)}
+
+/* check cards */
+.check{display:flex;flex-direction:column;gap:8px;border-left:3px solid var(--amber)}
+.check h3{font-size:16px;font-weight:700}
+.check p{font-size:14px;color:var(--muted)}
+.check .ask{font-size:14px;font-weight:600;color:var(--ink);background:var(--fill);border-radius:10px;padding:9px 12px;margin-top:4px}
+
+/* qa cards (investment) */
+.qa{display:flex;flex-direction:column;gap:12px}
+.qa .qh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.qa h3{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.qa p{font-size:15px;color:var(--muted)}
+.qa p b{color:var(--ink)}
 
 /* bars */
-.bars{display:flex;flex-direction:column;gap:9px}
-.brow{display:grid;grid-template-columns:200px 1fr 56px;align-items:center;gap:11px}
-.brow .bl{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brow .bl b{font-weight:600}
-.btrack{height:9px;background:var(--fill);border-radius:5px;overflow:hidden}
-.bfill{height:100%;background:var(--bar);border-radius:5px}
-.bfill.g{background:var(--green)}.bfill.a{background:var(--amber)}.bfill.r{background:var(--red)}.bfill.b{background:var(--blue)}
-.brow .bv{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right}
-@media(max-width:760px){.brow{grid-template-columns:120px 1fr 48px}}
-
-/* notes + cta */
-.note{display:flex;gap:10px;background:var(--fill);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--ink);margin-top:14px;line-height:1.55}
-.note.warn{background:var(--amber-soft)}
-.note .ni{flex:none;width:16px;height:16px;color:var(--muted);margin-top:2px}
-.note.warn .ni{color:var(--amber)}
-.cta{display:flex;gap:11px;background:var(--cta);color:var(--cta-ink);border-radius:13px;padding:14px 16px;margin-top:14px;font-size:12.5px;line-height:1.55}
-.cta .ci{flex:none;width:17px;height:17px;margin-top:1px;opacity:.85}
-.cta .lead{font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:.08em;display:block;margin-bottom:4px;opacity:.7}
-
-/* tables */
-.tbl-wrap{overflow-x:auto}
-.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
-.tbl th{text-align:left;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);padding:0 12px 9px;border-bottom:1px solid var(--line);vertical-align:bottom}
-.tbl td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
-.tbl tr:last-child td{border-bottom:0}
-.tbl td.num,.tbl th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
-.tbl .t-title{font-weight:600;color:var(--ink)}
-.tbl .t-sub{color:var(--faint);font-size:11px;display:block;margin-top:1px}
-.tbl tr.hl td{background:var(--blue-soft)}
-.tbl tr.x td{opacity:.55}
-.tbl tr.tot td{font-weight:700;color:var(--ink);background:var(--fill)}
-.tbl td.ink{color:var(--ink)}
-
-/* play cards */
-.plays{display:flex;flex-direction:column;gap:11px}
-.play{background:var(--panel);border:1px solid var(--line);border-left-width:3px;border-radius:14px;padding:15px 17px}
-.play .ph{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.play .pt{font-size:14.5px;font-weight:700;letter-spacing:-.01em}
-.play .pcode{font-family:var(--mono);font-size:11px;color:var(--faint)}
-.play .why{margin-top:8px;font-size:12.5px;color:var(--muted)}
-.play .say{margin-top:10px;font-size:13px;font-weight:600;color:var(--ink);padding-left:11px;border-left:2px solid var(--line2)}
-.play.red{border-left-color:var(--red)}.play.green{border-left-color:var(--green)}.play.blue{border-left-color:var(--blue)}.play.violet{border-left-color:var(--violet)}.play.amber{border-left-color:var(--amber)}.play.muted{border-left-color:var(--faint)}
-
-/* upload */
-.upgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
-.drop{border:1.5px dashed var(--line2);border-radius:14px;padding:38px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;cursor:pointer;transition:.15s;background:var(--bg)}
-.drop:hover,.drop.over{border-color:var(--blue);background:var(--blue-soft)}
-.drop .dico{width:44px;height:44px;border-radius:12px;background:var(--fill);display:grid;place-items:center;color:var(--muted)}
-.drop h3{font-size:16px;font-weight:700}
-.drop p{font-size:12.5px;color:var(--muted);max-width:44ch}
-.btnrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.btn{appearance:none;border:1px solid var(--line2);background:var(--panel);font-size:12.5px;font-weight:600;padding:8px 13px;border-radius:9px;cursor:pointer}
-.btn:hover{background:var(--fill)}
-.btn.dark{background:var(--cta);color:var(--cta-ink);border-color:var(--cta)}
-.xlink{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);border:0;padding:7px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
-.steps{display:flex;flex-direction:column;gap:0}
-.stp{display:grid;grid-template-columns:26px 1fr auto;gap:10px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
-.stp:first-child{border-top:0;padding-top:0}
-.stp .n{width:20px;height:20px;border-radius:50%;background:var(--fill2);color:var(--muted);display:grid;place-items:center;font:700 10px var(--mono)}
-.stp .t{font-size:13px;font-weight:600}
-.stp .d{font:11.5px/1.5 var(--mono);color:var(--faint);margin-top:2px;min-height:17px}
-.stp .o{font:600 10.5px var(--mono);color:var(--faint);white-space:nowrap;padding-top:2px}
-.stp.active .n{background:var(--blue);color:#fff;animation:pulse 1s ease infinite}
-.stp.done .n{background:var(--green);color:#fff}
-.stp.done .o{color:var(--green)}
-@keyframes pulse{50%{opacity:.5}}
-.prog{height:4px;background:var(--fill);border-radius:2px;overflow:hidden;margin:4px 0 16px}
-.prog div{height:100%;background:var(--blue);width:0;transition:width .4s ease}
-
-/* forms */
-.form{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.fld{display:flex;flex-direction:column;gap:5px;min-width:0}
-.fld label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}
-.fld select,.fld input{border:1px solid var(--line2);border-radius:9px;padding:8px 10px;background:var(--bg);width:100%;font-size:13px}
-.fld input.in{background:var(--amber-soft);border-color:transparent;font-family:var(--mono)}
-.seg{display:inline-flex;background:var(--fill);border-radius:9px;padding:2px}
-.seg button{border:0;background:none;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--muted)}
-.seg button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.gauge{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
-.gauge .v{font-weight:700;font-size:14px}
-.slab{display:flex;height:30px;border-radius:9px;overflow:hidden;border:1px solid var(--line);margin-top:10px}
-.slab div{display:flex;align-items:center;justify-content:center;font:600 10.5px var(--mono);color:#fff;min-width:0}
-.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:9px;font-size:11.5px;color:var(--muted)}
-.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:middle}
-.kv{display:grid;grid-template-columns:120px 1fr;gap:9px 14px;font-size:12.5px}
-.kv dt{color:var(--faint);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
-.kv dd{margin:0;color:var(--ink)}
-.timeline svg{display:block;width:100%;min-width:640px;height:auto}
-.foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--faint);line-height:1.6}
-.foot b{color:var(--muted);font-weight:600}
-
-@media(max-width:1000px){.vcards,.grid4{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(3,1fr)}.kpi:nth-child(4){border-left:0}.kpi:nth-child(n+4){border-top:1px solid var(--line)}}
-@media(max-width:760px){
-  .grid2,.grid3,.upgrid{grid-template-columns:1fr}
-  .kpis,.kpis.k4{grid-template-columns:repeat(2,1fr)}
-  .kpi{border-left:1px solid var(--line);border-top:1px solid var(--line)}
-  .kpi:nth-child(odd){border-left:0}.kpi:nth-child(-n+2){border-top:0}.kpi:nth-child(4){border-left:1px solid var(--line)}
-  .fitgrid{grid-template-columns:1fr!important}
-}
-@media(max-width:480px){.vcards,.grid4,.form{grid-template-columns:1fr}.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:8px}}
-/* ---- v4 polish ---- */
-:root{--soft:#FAFAFA}
-.panel{box-shadow:0 1px 2px rgba(24,24,27,.04)}
-.phead h1{font-size:24px}
-.crumb{font:500 11px var(--mono);color:var(--faint);letter-spacing:.02em}
-.tip{position:fixed;z-index:100;pointer-events:none;background:#18181B;color:#fff;font-size:11.5px;padding:7px 9px;border-radius:8px;max-width:260px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.18)}
-.tip b{font-weight:700}
-.hero{display:grid;grid-template-columns:1fr 310px;padding:0;overflow:hidden;margin-bottom:14px}
-.hero .hl{padding:24px 26px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.hero .hr{padding:22px 24px;border-left:1px solid var(--line);background:var(--soft);display:flex;flex-direction:column;gap:14px}
-.hero h1{font-size:28px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
-.hero .loc{color:var(--muted);font-size:13px}
-.hero .chips{display:flex;flex-wrap:wrap;gap:6px}
-.hero .verdict{font-size:14px;line-height:1.6;color:var(--muted);max-width:66ch}
-.hero .verdict b{color:var(--ink)}
-.ring{display:flex;align-items:center;gap:14px}
-.ring .rt b{display:block;font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
-.ring .rt span{font-size:12px;color:var(--muted)}
-.subbars{display:flex;flex-direction:column;gap:9px}
-.subbars .brow{grid-template-columns:96px 1fr 34px}
-.chart-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
-.chart-h .ct{font-size:13.5px;font-weight:700;letter-spacing:-.01em}
-.chart-h .cs{font-size:12px;color:var(--muted);margin-top:2px}
-.chart svg{display:block;width:100%;height:auto;overflow:visible}
-.chart text{font-family:var(--sans)}
-.pbar{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;padding:5px 0;cursor:default}
-.pbar .bl{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pbar .bv{font:600 12px var(--mono);text-align:right}
-.pbar .btrack{height:12px;border-radius:6px}
+.pbar{display:grid;grid-template-columns:190px 1fr 74px;gap:12px;align-items:center;padding:6px 0}
+.pbar .bl{font-size:14px}
+.pbar .bv{font:600 13px var(--mono);text-align:right}
+.btrack{height:14px;background:var(--fill);border-radius:7px;overflow:hidden}
+.bfill{height:100%;background:var(--fill2);border-radius:7px;background:#A1A1AA}
 .pbar.you .bl{font-weight:700}
 .pbar.you .bfill{background:var(--blue)}
 .pbar.you .bv{color:var(--blue)}
-.pbar .bfill{border-radius:6px}
-.meter{margin-top:10px;display:flex;flex-direction:column;gap:5px}
-.meter .ml{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)}
-.meter .ml b{font-family:var(--mono);color:var(--ink)}
-.meter .mt{position:relative;height:7px;background:var(--fill);border-radius:4px}
-.meter .mf{height:100%;border-radius:4px}
-.meter .mf.r{background:var(--red)}.meter .mf.g{background:var(--green)}
-.meter .mt i{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);border-radius:1px}
-.meter .ms{font:10.5px var(--mono);color:var(--faint)}
-.q{display:flex;flex-direction:column;gap:8px}
-.q .ql{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}
-.opts{display:flex;flex-wrap:wrap;gap:6px}
-.opt{appearance:none;border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:500;cursor:pointer;transition:.12s}
+
+/* fit check */
+.fitwrap{display:grid;grid-template-columns:1fr 360px;gap:14px;align-items:start}
+.qs{display:flex;flex-direction:column;gap:22px}
+.q{display:flex;flex-direction:column;gap:10px}
+.q .ql{font-size:15px;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{appearance:none;border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:500;cursor:pointer;transition:.12s}
 .opt:hover{border-color:var(--faint)}
 .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
-.fitwrap{display:grid;grid-template-columns:1fr 360px;gap:14px;align-items:start}
-.fitside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px);display:flex;flex-direction:column;gap:14px}
-.persona{display:flex;flex-direction:column;gap:14px}
-.persona .ph2{display:flex;gap:12px;align-items:center}
-.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
-.persona .quote{font-size:14px;font-weight:600;padding-left:11px;border-left:2px solid var(--line2)}
-.cover{border-radius:12px;background:linear-gradient(160deg,#1B2A41,#0E1726);color:#E9D8B4;padding:18px;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4;max-width:100%;font-family:var(--sans)}
-.cover .c1{font:600 9px var(--mono);letter-spacing:.2em;opacity:.7}
-.cover .c2{font-size:17px;font-weight:700;letter-spacing:.06em;line-height:1.2;color:#F4E7CB}
-.cover .c3{font-size:10px;letter-spacing:.08em;opacity:.8}
-.samplecard{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;cursor:pointer;text-align:left;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;transition:.15s;width:100%}
+.money{display:flex;align-items:center;gap:8px;max-width:260px}
+.money input{border:1px solid var(--line2);border-radius:10px;padding:9px 12px;width:100%;font-family:var(--mono);font-size:15px;background:var(--panel)}
+.money span{font-size:14px;color:var(--muted);white-space:nowrap}
+.fitside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);display:flex;flex-direction:column;gap:14px}
+.gauge{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.gauge .v{font-weight:800;font-size:20px;letter-spacing:-.01em}
+
+/* cost */
+.seg{display:inline-flex;background:var(--fill);border-radius:10px;padding:3px}
+.seg button{border:0;background:none;padding:7px 16px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--sans)}
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.plan>div{padding:16px 18px;border-left:1px solid var(--line)}
+.plan>div:first-child{border-left:0}
+.plan .pv{font:600 21px var(--mono);margin-top:4px}
+.plan .pp{font-size:13px;color:var(--muted)}
+.plan .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.inputs{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.inp{display:flex;flex-direction:column;gap:5px}
+.inp label{font-size:13px;color:var(--muted);font-weight:500}
+.inp input{border:1px solid var(--line2);border-radius:10px;padding:8px 11px;width:120px;font-family:var(--mono);font-size:14px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fact{padding:16px 18px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.fact:nth-child(3n+1){border-left:0}
+.fact:nth-child(-n+3){border-top:0}
+.fact .fv{font-size:16px;font-weight:600;margin-top:4px}
+.fact .fn{font-size:12.5px;color:var(--amber);margin-top:2px;font-weight:500}
+.dist{display:grid;grid-template-columns:1fr auto auto;gap:10px 16px;align-items:center;font-size:15px}
+.dist .dt{font-family:var(--mono);font-size:14px;color:var(--muted);text-align:right}
+.amen{display:flex;flex-wrap:wrap;gap:8px}
+.amen span{background:var(--fill);border-radius:999px;padding:7px 13px;font-size:14px}
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);padding:0 12px 10px;border-bottom:1px solid var(--line)}
+.tbl td{padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{color:var(--ink);font-weight:600}
+
+/* upload */
+.upgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.drop{border:1.5px dashed var(--line2);border-radius:14px;padding:44px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;cursor:pointer;transition:.15s}
+.drop:hover,.drop.over{border-color:var(--blue);background:var(--blue-soft)}
+.drop .dico{width:48px;height:48px;border-radius:14px;background:var(--fill);display:grid;place-items:center;color:var(--muted)}
+.drop h3{font-size:18px;font-weight:700}
+.drop p{font-size:14px;color:var(--muted);max-width:40ch}
+.btn{appearance:none;border:1px solid var(--line2);background:var(--panel);font-size:14px;font-weight:600;padding:10px 16px;border-radius:10px;cursor:pointer}
+.btn:hover{background:var(--fill)}
+.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.dark:hover{background:#000}
+.cover{border-radius:10px;background:linear-gradient(160deg,#1B2A41,#0E1726);color:#E9D8B4;padding:14px;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4;max-width:100%}
+.cover .c1{font:600 8.5px var(--mono);letter-spacing:.2em;opacity:.7}
+.cover .c2{font-size:15px;font-weight:700;letter-spacing:.06em;line-height:1.2;color:#F4E7CB}
+.cover .c3{font-size:9px;letter-spacing:.08em;opacity:.8}
+.samplecard{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;cursor:pointer;text-align:left;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;transition:.15s;width:100%}
 .samplecard:hover{border-color:var(--blue);box-shadow:0 2px 10px rgba(37,99,235,.08)}
-.filecard{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--soft);margin-bottom:14px}
+.steps{display:flex;flex-direction:column}
+.stp{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line);align-items:center}
+.stp:first-child{border-top:0}
+.stp .n{width:24px;height:24px;border-radius:50%;background:var(--fill2);color:var(--muted);display:grid;place-items:center;font:700 11px var(--sans)}
+.stp .t{font-size:14.5px;font-weight:500;color:var(--faint)}
+.stp.active .n{background:var(--blue);color:#fff;animation:pulse 1s ease infinite}
+.stp.active .t,.stp.done .t{color:var(--ink)}
+.stp.done .n{background:var(--green);color:#fff}
+@keyframes pulse{50%{opacity:.5}}
+.prog{height:5px;background:var(--fill);border-radius:3px;overflow:hidden;margin:14px 0 8px}
+.prog div{height:100%;background:var(--blue);width:0;transition:width .4s ease}
+.filecard{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
 .filecard .fi{width:36px;height:44px;border-radius:6px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font:700 9.5px var(--mono);flex:none}
-.empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0 16px;text-align:center;color:var(--muted);font-size:12.5px}
-.empty .ei{width:40px;height:40px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--faint)}
-.stp.idle .t{color:var(--faint)}
-@media(max-width:960px){.hero{grid-template-columns:1fr}.hero .hr{border-left:0;border-top:1px solid var(--line)}.fitwrap{grid-template-columns:1fr}.fitside{position:static}}
-@media(max-width:600px){.qgrid{grid-template-columns:1fr}.pbar{grid-template-columns:110px 1fr 58px}.hero h1{font-size:23px}.hero .hl,.hero .hr{padding:18px}}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:var(--radius);padding:20px 24px;margin-top:36px}
+.cta h3{font-size:18px;font-weight:700}
+.cta p{font-size:14px;opacity:.7;margin-top:2px}
+.cta .btn{background:#fff;color:var(--ink);border-color:#fff}
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);line-height:1.6}
+.tip{position:fixed;z-index:100;pointer-events:none;background:#18181B;color:#fff;font-size:12.5px;padding:7px 10px;border-radius:8px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+
+@media(max-width:900px){.fitwrap{grid-template-columns:1fr}.fitside{position:static}.grid4{grid-template-columns:1fr 1fr}.nums{grid-template-columns:1fr 1fr}.num:nth-child(3){border-left:0}.num:nth-child(n+3){border-top:1px solid var(--line)}}
+@media(max-width:700px){
+  .grid2,.grid3,.upgrid{grid-template-columns:1fr}
+  .answer{grid-template-columns:1fr;padding:20px}.answer h1{font-size:25px}.answer .say{font-size:16px}
+  .facts{grid-template-columns:1fr 1fr}.fact{border-left:1px solid var(--line)!important;border-top:1px solid var(--line)!important}.fact:nth-child(odd){border-left:0!important}.fact:nth-child(-n+2){border-top:0!important}
+  .pbar{grid-template-columns:120px 1fr 60px}.plan{grid-template-columns:1fr}.plan>div{border-left:0;border-top:1px solid var(--line)}.plan>div:first-child{border-top:0}
+}
+@media(max-width:440px){.nums,.grid4,.facts{grid-template-columns:1fr}.num{border-left:0!important;border-top:1px solid var(--line)}.num:first-child{border-top:0}.fact{border-left:0!important;border-top:1px solid var(--line)!important}.fact:first-child{border-top:0!important}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -278,27 +219,18 @@ h1,h2,h3{text-wrap:balance}
 
 <header class="topbar">
   <div class="topbar-in">
-    <div class="brand"><span class="dot"></span>Fixit <small>Project Analysis</small></div>
-    <nav class="tabs" id="tabs" aria-label="Dashboard sections"></nav>
-    <span class="topbar-meta" id="meta">No document</span>
-    <button class="upbtn" id="upBtn">Upload brochure</button>
+    <div class="brand"><span class="dot"></span>Fixit</div>
+    <nav class="tabs" id="tabs" aria-label="Report sections"></nav>
+    <button class="upbtn" id="upBtn">New brochure</button>
   </div>
 </header>
-
 <main class="wrap" id="main"></main>
 <div class="tip" id="tip" hidden></div>
 
 <script>
 /* ============================ DATA ============================ */
 const TODAY=new Date();
-const P={
-  name:"The Westin Residences",short:"Westin Residences",loc:"Sector 103, Dwarka Expressway, Gurugram",
-  dev:"Whiteland Corporation Pvt. Ltd.",brand:"Westin · Marriott International",
-  rera:["RC/REP/HARERA/GGM/838/570/2024/65","RC/REP/HARERA/GGM/839/571/2024/66","RC/REP/HARERA/GGM/840/572/2024/67","RC/REP/HARERA/GGM/949/681/2025/52"],
-  launch:"2024-06-18",
-  poss:[{v:"2028-12-01",l:"Dec 2028 · channel site"},{v:"2030-12-01",l:"Dec 2030 · listing"},{v:"2031-09-01",l:"Sep 2031 · listing"}]
-};
-const CONFIGS={"3BHK":{super:2900,rent:180000},"4BHK":{super:4328,rent:260000}};
+const CONFIGS={"3BHK":{super:2900,rent:180000,label:"3 BHK",size:"~2,900 sq ft"},"4BHK":{super:4328,rent:260000,label:"4 BHK",size:"~4,330 sq ft"}};
 const S={cfg:"3BHK",super:2900,bsp:24000,other:12,gst:5,stamp:7,slab1:30,slab2:40,slab3:30,rate:8.6,tenure:20,rtm:15000,newLaunch:18000,rent:180000,possession:"2030-12-01"};
 const F={purpose:"live",house:"4",parents:"no",own:"own",nri:"no",move:"flex",income:"300",budget:"10"};
 
@@ -306,101 +238,67 @@ const F={purpose:"live",house:"4",parents:"no",own:"own",nri:"no",move:"flex",in
 const $=s=>document.querySelector(s);
 function cr(v){if(Math.abs(v)>=1e7)return"₹"+(v/1e7).toFixed(2)+" Cr";if(Math.abs(v)>=1e5)return"₹"+(v/1e5).toFixed(1)+" L";return"₹"+Math.round(v).toLocaleString("en-IN")}
 const inr=v=>"₹"+Math.round(v).toLocaleString("en-IN");
-const mb=(a,b)=>(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth())+(b.getDate()-a.getDate())/30.4;
+const k=v=>"₹"+(v/1000).toFixed(0)+"k";
+const mb=(a,b)=>(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth());
 const pmt=(r,n,pv)=>r===0?pv/n:pv*r/(1-Math.pow(1+r,-n));
-const VC={PASS:"g",FAIL:"r",CONDITIONAL:"a",PARTIAL:"a",UNTESTED:"",VERIFY:"v",CONFLICT:"r",MINOR:"a",NOW:"b",EXCLUDED:"r",HELD:"a",CORRECTED:"r"};
-const chip=(t,k)=>`<span class="chip ${k!==undefined?k:(VC[t]??"")}">${t}</span>`;
-const SRC={B:["Brochure","v"],C:["Computed","b"],R:["Researched",""],D:["Directional","a"],V:["Verify","r"]};
-const src=k=>chip(SRC[k][0],SRC[k][1]);
-const IC={
-  flag:'<path d="M4 21V4m0 0h11l-2 4 2 4H4"/>',grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
-  check:'<path d="M20 6 9 17l-5-5"/>',alert:'<path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>',
-  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',rupee:'<path d="M6 4h12M6 9h12M9 4c5 0 5 10 0 10H6l8 7"/>',
-  users:'<circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11a3 3 0 1 0 0-6M22 21c0-3-2-5-4-5.5"/>',pin:'<path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
-  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',doc:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
-  bulb:'<path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
-  up:'<path d="M12 16V4m0 0-5 5m5-5 5 5M4 20h16"/>'
-};
-const ic=(k,c="ic")=>`<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
-const shead=(i,t,tag)=>`<div class="shead">${ic(i)}<h2>${t}</h2><span class="rule"></span>${tag?`<span class="tag">${tag}</span>`:""}</div>`;
-const phead=(t,d,right)=>`<div class="phead"><div><h1>${t}</h1>${d?`<p>${d}</p>`:""}</div>${right||""}</div>`;
-const note=(t,warn)=>`<div class="note${warn?" warn":""}">${ic(warn?"alert":"bulb","ni")}<div>${t}</div></div>`;
+const badge=(t,c)=>`<span class="badge ${c}">${t}</span>`;
+const IC={up:'<path d="M12 16V4m0 0-5 5m5-5 5 5M4 20h16"/>'};
+const ic=k=>`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 
-/* ============================ COMPUTE ============================ */
 function compute(){
-  const base=S.super*S.bsp,other=base*S.other/100,sub=base+other,gst=sub*S.gst/100,stamp=sub*S.stamp/100,allin=sub+gst+stamp;
-  const preHand=S.slab1+S.slab2,loan=base*.75,emi=pmt(S.rate/1200,S.tenure*12,loan),minIncome=emi*12/.4;
-  const grossYield=S.rent*12/allin,netYield=(S.rent*12*.8-S.super*12*12)/allin;
-  const L=new Date(P.launch),Pd=new Date(S.possession);
-  const elapsed=mb(L,TODAY),toPoss=mb(TODAY,Pd),possMonth=mb(L,Pd);
-  const phases=[["Launch",0,3],["Post-launch",3,12],["Sustenance",12,40],["Near possession",40,60],["Possession",60,999]];
-  let ph=phases.findIndex(p=>elapsed>p[1]&&elapsed<=p[2]);if(ph<0)ph=0;if(toPoss<=0)ph=4;
-  const routeA=preHand<=60,routeB=S.bsp<=S.rtm,t1=(routeA||routeB)?"PASS":"FAIL";
-  const condA=S.bsp<=S.newLaunch,condB=preHand<=60,t3=!condA?"FAIL":(condB?"PASS":"CONDITIONAL");
-  const t2=t1==="FAIL"?"CONDITIONAL":"PASS";
-  return{base,other,sub,gst,stamp,allin,preHand,loan,emi,minIncome,grossYield,netYield,elapsed,toPoss,possMonth,ph,phase:phases[ph],phases,routeA,routeB,t1,condA,condB,t3,t2,t4:"UNTESTED",rateCarpet:allin/(S.super*.62)};
+  const base=S.super*S.bsp,other=base*S.other/100,gst=(base+other)*S.gst/100,stamp=(base+other)*S.stamp/100,total=base+other+gst+stamp;
+  const loan=base*.75,emi=pmt(S.rate/1200,S.tenure*12,loan);
+  const preKeys=S.slab1+S.slab2,toPoss=Math.max(0,mb(TODAY,new Date(S.possession)));
+  const yieldPct=S.rent*12/total*100;
+  return{base,other,gst,stamp,total,loan,emi,own:total-loan,incomeNeeded:emi*12/.4,preKeys,toPoss,yieldPct,
+    overReady:Math.round((S.bsp/S.rtm-1)*100),overNew:Math.round((S.bsp/S.newLaunch-1)*100)};
 }
-const SCORE={
-  hood:[["Peak commute to Cyber City",3,3,"40–55 min at 9am"],["Airport access",3,5,"IGI ~15–20 min"],["Schools & admission ease",3,3,"Few established yet"],["Hospitals within 20 min",2,3.5,"Dwarka & Gurugram"],["Daily-needs retail",2,2.5,"Mostly planned"],["1-yr price movement",2,4,"~18% YoY reported"],["Metro transit",2,2,"Proposed only"],["Air quality / flooding",2,2,"NCR baseline"]],
-  proj:[["Brand & operator",3,4.5,"Westin; contract to verify"],["Developer delivery record",3,3,"Regional; record not supplied"],["Amenities & clubhouse",2,4.5,"Size unverified"],["Density",2,3,"20–71 units/acre"],["Open & green space",2,4,"~80% claimed"],["Legal & RERA currency",2,4,"4 registrations live"],["Payment-plan flexibility",2,2,"30:40:30 CLP"]]
-};
-const bscore=rows=>{let s=0,w=0;rows.forEach(r=>{s+=r[2]/5*10*r[1];w+=r[1]});return s/w};
 
 /* ============================ SHELL ============================ */
-const TABS=[["overview","Overview"],["fit","Fit check"],["project","Project"],["cost","True cost"],["timing","Timing & tests"],["buyers","Buyers"],["playbook","Playbook"]];
+const TABS=[["summary","Summary"],["fit","Is it for me?"],["cost","Cost"],["invest","Investment"],["details","Project details"]];
 let analysed=false,cur="upload",srcName="";
 function renderTabs(){
   $("#tabs").innerHTML=TABS.map(t=>`<button class="tab-btn${cur===t[0]?" active":""}" data-t="${t[0]}"${analysed?"":" disabled"}>${t[1]}</button>`).join("");
   document.querySelectorAll(".tab-btn").forEach(b=>b.onclick=()=>go(b.dataset.t));
 }
-function go(t){cur=t;try{localStorage.setItem("fixit-tab",t)}catch(e){}renderTabs();render();window.scrollTo({top:0})}
+function go(t){cur=t;renderTabs();render();window.scrollTo({top:0})}
 function render(){
   const m=$("#main");
   if(cur==="upload"){m.innerHTML=vUpload();bindUpload();return}
   const c=compute();
-  const V={overview:vOverview,fit:vFit,project:vProject,cost:vCost,timing:vTiming,buyers:vBuyers,playbook:vPlaybook};
-  m.innerHTML=`<div class="view show">${V[cur](c)}${foot()}</div>`;
+  const V={summary:vSummary,fit:vFit,cost:vCost,invest:vInvest,details:vDetails};
+  m.innerHTML=`<div class="view">${V[cur](c)}${foot()}</div>`;
   bind(c);
 }
-function foot(){return `<div class="foot"><b>Source:</b> ${srcName} · analysed against HARERA registrations and public listings (megarealtymax.com, 100acress.com, realtyhunting.com, whiteland.co.in, propertypistol.com, 99acres.com). Figures are tagged <b>Brochure</b>, <b>Computed</b>, <b>Researched</b>, <b>Directional</b> or <b>Verify</b>. Third-party figures are reported, not verified. Check every figure with the developer before any purchase decision.</div>`}
+const foot=()=>`<div class="foot">Based on <b>${srcName}</b>, the project's government (RERA) registrations and public property listings. Prices and dates from third-party sites can be out of date. Always confirm with the builder, in writing, before you book.</div>`;
+const nextBtn=(t,to)=>`<div class="cta"><div><h3>${t[0]}</h3><p>${t[1]}</p></div><button class="btn" data-go="${to}">${t[2]} →</button></div>`;
 
 /* ============================ UPLOAD ============================ */
-const PASSES=[
-  ["Intake & completeness","Checking blocking fields: name, developer, sector, RERA, acreage, units, possession, launch date, payment plan","14 / 22 fields"],
-  ["Extraction","38 facts · 3 & 4 BHK, from ₹7 Cr, RERA 65/66/67 of 2024 and 52 of 2025, clubhouse, amenities","38 facts"],
-  ["Verification","Cross-checking HARERA + 9 listings · possession disagrees across 3 sources, units 412–1,500, towers 5 vs 13","6 conflicts"],
-  ["Lifecycle placement","Launch basis: RERA registration 18 Jun 2024 · months elapsed → sales phase","phase set"],
-  ["Buyer-case tests","Investor exit · brand & location pull · first-home buyer · past-buyer cross-sell","4 tests"],
-  ["Computation","All-in cost, EMI, income required, yield, density","live model"],
-  ["Synthesis","Personas, catchment, demand, priorities, content themes","7 views"]
-];
+const STEPS=["Reading the brochure","Checking facts against government records","Working out the real price","Checking if it's a good investment","Preparing your report"];
 function vUpload(){
-  return `<div class="view show">${phead("Analyse a project","Upload a project brochure. Fixit extracts every fact, checks it against RERA and public listings, runs the numbers and tells you who the project is really for.")}
+  return `<div class="view"><div class="phead"><div><h1>Is this project right for you?</h1><p>Upload a property brochure. Fixit reads it, checks the facts, works out what you'll really pay, and gives you a straight answer.</p></div></div>
   <div class="upgrid">
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="panel">
-        <label class="drop" id="drop" for="file">
-          <span class="dico">${ic("up","")}</span>
-          <h3>Drop a brochure here</h3>
-          <p>PDF, image or Word file, up to 50 MB. Floor plans and a cost sheet sharpen the result.</p>
-          <span class="btnrow"><span class="btn dark">Choose file</span></span>
-          <span class="btnrow">${["PDF","JPG / PNG","DOCX","PPTX"].map(x=>chip(x,"")).join("")}</span>
-          <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.ppt,.pptx" hidden>
-        </label>
-      </div>
+      <div class="panel"><label class="drop" id="drop" for="file">
+        <span class="dico">${ic("up")}</span>
+        <h3>Drop the brochure here</h3>
+        <p>A PDF, photo or Word file of any project brochure.</p>
+        <span class="btn dark">Choose file</span>
+        <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.ppt,.pptx" hidden>
+      </label></div>
       <button class="samplecard" type="button" id="sampleBtn">
-        <div class="cover" aria-hidden="true"><span class="c1">SECTOR 103 · GURUGRAM</span><span class="c2">THE WESTIN<br>RESIDENCES</span><span class="c3">3 &amp; 4 BHK · BRANDED LIVING</span></div>
-        <div style="display:flex;flex-direction:column;gap:6px"><span class="crumb">SAMPLE BROCHURE</span><span style="font-weight:700;font-size:15px">The Westin Residences</span><span style="font-size:12.5px;color:var(--muted)">Branded residences on Dwarka Expressway. A good example: the brochure is short on facts, and public records disagree with it in six places.</span><span class="xlink" style="align-self:flex-start;margin-top:4px">Analyse sample →</span></div>
+        <div class="cover" aria-hidden="true"><span class="c1">SECTOR 103 · GURUGRAM</span><span class="c2">THE WESTIN<br>RESIDENCES</span><span class="c3">3 &amp; 4 BHK</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span class="label">No brochure handy?</span><span style="font-weight:700;font-size:16px">Try a sample: The Westin Residences</span><span class="small">A luxury project on Dwarka Expressway, Gurugram.</span><span style="color:var(--blue);font-weight:600;font-size:14px;margin-top:4px">Analyse sample →</span></div>
       </button>
     </div>
-    <div class="panel" id="runPanel">
-      <div id="fileSlot"><div class="empty"><span class="ei">${ic("doc","")}</span><b style="color:var(--ink)">Waiting for a document</b>These seven passes run on every brochure.</div></div>
-      <div class="prog" id="prog"><div></div></div>
-      <div class="steps">${PASSES.map((p,i)=>`<div class="stp idle" id="ps${i}"><span class="n">${i+1}</span><div><div class="t">${p[0]}</div><div class="d"></div></div><span class="o"></span></div>`).join("")}</div>
+    <div class="panel">
+      <div id="fileSlot"><div class="label">What happens next</div></div>
+      <div class="prog"><div id="prog"></div></div>
+      <div class="steps">${STEPS.map((p,i)=>`<div class="stp" id="ps${i}"><span class="n">${i+1}</span><span class="t">${p}</span></div>`).join("")}</div>
+      <p class="small" style="margin-top:10px">Takes about 10 seconds.</p>
     </div>
   </div></div>`;
 }
-
 let timer=null;
 function bindUpload(){
   const drop=$("#drop"),file=$("#file");
@@ -410,374 +308,197 @@ function bindUpload(){
   drop.addEventListener("drop",ev=>{const f=ev.dataTransfer.files[0];if(f)run(f)});
   $("#sampleBtn").onclick=ev=>{ev.preventDefault();run({name:"Westin_Residences_Brochure.pdf",size:6.8e6})};
 }
-
 function run(f){
-  srcName=f.name;$("#meta").textContent=f.name;
+  srcName=f.name.replace(/[<>&]/g,"");
   const ext=(f.name.split(".").pop()||"doc").toUpperCase().slice(0,4);
-  const mbs=f.size?(f.size/1e6).toFixed(1)+" MB":"";
-  $("#fileSlot").innerHTML=`<div class="filecard"><span class="fi">${ext}</span><div style="min-width:0"><div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name.replace(/[<>&]/g,"")}</div><div style="font:11px var(--mono);color:var(--faint)">${mbs} · uploaded just now</div></div></div>`;
-  document.querySelectorAll(".stp").forEach(x=>x.classList.remove("idle"));
+  $("#fileSlot").innerHTML=`<div class="filecard"><span class="fi">${ext}</span><div style="min-width:0"><div style="font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${srcName}</div><div class="small">${f.size?(f.size/1e6).toFixed(1)+" MB · ":""}analysing…</div></div></div>`;
   clearTimeout(timer);let i=0;
   const step=()=>{
-    $("#prog div").style.width=(i/PASSES.length*100)+"%";
-    if(i>0){const d=$("#ps"+(i-1));d.classList.remove("active");d.classList.add("done");d.querySelector(".n").textContent="✓";d.querySelector(".o").textContent=PASSES[i-1][2]}
-    if(i>=PASSES.length){timer=setTimeout(()=>{analysed=true;go("overview")},450);return}
-    const el=$("#ps"+i);el.classList.add("active");
-    const d=el.querySelector(".d"),t=PASSES[i][1];let k=0;const ty=setInterval(()=>{k+=3;d.textContent=t.slice(0,k);if(k>=t.length)clearInterval(ty)},10);
-    i++;timer=setTimeout(step,950);
+    $("#prog").style.width=(i/STEPS.length*100)+"%";
+    if(i>0){const d=$("#ps"+(i-1));d.classList.remove("active");d.classList.add("done");d.querySelector(".n").textContent="✓"}
+    if(i>=STEPS.length){timer=setTimeout(()=>{analysed=true;go("summary")},450);return}
+    $("#ps"+i).classList.add("active");i++;timer=setTimeout(step,1300);
   };
   step();
 }
 
-/* ============================ OVERVIEW ============================ */
-function meter(label,val,thr,max,fmt){const bad=val>thr;return `<div class="meter"><div class="ml"><span>${label}</span><b style="color:var(--${bad?"red":"green"})">${fmt(val)}</b></div><div class="mt"><div class="mf ${bad?"r":"g"}" style="width:${Math.min(100,val/max*100)}%"></div><i style="left:${thr/max*100}%"></i></div><div class="ms">limit ${fmt(thr)}</div></div>`}
-function vCard(n,t,v,d,mv,extra){const k={PASS:"green",FAIL:"red",CONDITIONAL:"amber",UNTESTED:"muted"}[v];return `<div class="vcard ${k}"><div class="vk"><span>${n}</span>${chip(v)}</div><h3>${t}</h3><p>${d}</p>${extra||""}<div class="mv">${mv}</div></div>`}
-function scoreRing(v){const r=34,C=2*Math.PI*r,f=C*v/10;return `<svg width="84" height="84" viewBox="0 0 84 84" role="img" aria-label="Score ${v.toFixed(1)} of 10"><circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--fill2)" stroke-width="8"/><circle cx="42" cy="42" r="${r}" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${f} ${C}" transform="rotate(-90 42 42)"/><text x="42" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="19" font-weight="600" fill="var(--ink)">${v.toFixed(1)}</text></svg>`}
-function priceChart(){
-  const rows=[["Sector 103 ready stock",S.rtm,"Resale and ready-to-move homes in Sectors 102–106"],["Recent corridor launches",S.newLaunch,"New launches on Dwarka Expressway, last ~6 months"],["Westin Residences",S.bsp,"Implied from ~₹7 Cr on ~2,900 sq ft","you"],["Golf Course Road (entry)",25000,"Lower end of the ₹25–45k premium band"]];
-  const max=Math.max(...rows.map(r=>r[1]))*1.05;
-  return `<div class="chart-h"><div><div class="ct">Price position</div><div class="cs">₹ per sq ft · the investor exit needs Westin at or below ready stock</div></div>${chip("Researched","")}</div>
-  ${rows.map(r=>`<div class="pbar ${r[3]||""}" data-tip="<b>${r[0]}</b><br>${inr(r[1])}/sq ft<br>${r[2]}"><span class="bl">${r[0]}</span><div class="btrack"><div class="bfill" style="width:${r[1]/max*100}%"></div></div><span class="bv">₹${(r[1]/1000).toFixed(1)}k</span></div>`).join("")}
-  <div style="font-size:12px;color:var(--muted);margin-top:10px">Westin is <b style="color:var(--ink)">+${Math.round((S.bsp/S.rtm-1)*100)}%</b> over ready stock and <b style="color:var(--ink)">+${Math.round((S.bsp/S.newLaunch-1)*100)}%</b> over recent launches.</div>`;
-}
-function cashChart(c){
-  const W=560,H=210,L=40,R=12,T=14,B=30,T0=Math.max(1,c.toPoss),Tm=Math.ceil(T0+4);
-  const X=m=>L+(W-L-R)*m/Tm,Y=p=>T+(H-T-B)*(1-p/100);
-  const pts=[[0,0],[0,S.slab1],[T0,S.slab1+S.slab2],[T0,100],[Tm,100]];
-  const path=pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join(" ");
-  let g="";
-  [0,25,50,75,100].forEach(p=>{g+=`<line x1="${L}" x2="${W-R}" y1="${Y(p)}" y2="${Y(p)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(p)+4}" text-anchor="end" font-size="10" fill="var(--faint)" font-family="JetBrains Mono, monospace">${p}%</text>`});
-  for(let m=0;m<=Tm;m+=12)g+=`<text x="${X(m)}" y="${H-10}" text-anchor="middle" font-size="10" fill="var(--faint)" font-family="JetBrains Mono, monospace">${m===0?"today":"+"+m+"m"}</text>`;
-  g+=`<path d="${path} L ${X(Tm)} ${Y(0)} L ${X(0)} ${Y(0)} Z" fill="var(--blue-soft)"/><path d="${path}" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>`;
-  g+=`<line x1="${L}" x2="${W-R}" y1="${Y(60)}" y2="${Y(60)}" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="${L+8}" y="${Y(60)-6}" text-anchor="start" font-size="10.5" font-weight="600" fill="var(--red)">60% ceiling for investors &amp; renters</text>`;
-  g+=`<line x1="${X(T0)}" x2="${X(T0)}" y1="${T}" y2="${Y(0)}" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="3 3"/><text x="${X(T0)-6}" y="${T+10}" text-anchor="end" font-size="10.5" font-weight="600" fill="var(--green)">keys</text>`;
-  g+=`<circle id="cashDot" r="5" fill="var(--blue)" stroke="var(--panel)" stroke-width="2" style="display:none"/><rect id="cashHit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/>`;
-  return `<div class="chart-h"><div><div class="ct">When your money goes out</div><div class="cs">Cumulative share of the ${cr(c.allin)} all-in, for a buyer booking today</div></div>${chip(c.preHand+"% before keys","r")}</div>
-  <div class="chart"><svg id="cashSvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative payment schedule" data-t0="${T0}" data-tm="${Tm}" data-w="${W}" data-l="${L}" data-r="${R}" data-t="${T}" data-h="${H}" data-b="${B}">${g}</svg></div>`;
-}
-function vOverview(c){
-  const h=bscore(SCORE.hood),p=bscore(SCORE.proj),comp=(h*45+p*35)/80;
-  const over=Math.round((S.bsp/S.rtm-1)*100);
-  return `<div class="panel hero">
-    <div class="hl">
-      <span class="crumb">PROJECTS / GURUGRAM / SECTOR 103</span>
-      <div><h1>${P.name}</h1><div class="loc" style="margin-top:6px">${P.loc} · ${P.dev}</div></div>
-      <div class="chips">${chip("Westin · Marriott","v")}${chip("3 & 4 BHK","")}${chip("4 RERA registrations","g")}${chip("Possession 2028–31 · verify","a")}${chip(c.phase[0]+" · month "+Math.round(c.elapsed),"b")}</div>
-      <p class="verdict"><b>A branded home for affluent end users and NRIs with NCR roots. A weak bet for flip investors.</b> The Westin name carries real long-distance pull. At ${inr(S.bsp)}/sq ft with ${c.preHand}% due before handover, there's no quick investor exit and no case for a first home. Local demand has been worked. The live audience is out-of-state and overseas.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn dark" data-go="fit">Check if it fits you →</button><button class="btn" data-go="cost">See the true cost</button></div>
+/* ============================ SUMMARY ============================ */
+function ring(v,max,color,label){const r=44,C=2*Math.PI*r,f=C*v/max;return `<svg width="112" height="112" viewBox="0 0 112 112" role="img" aria-label="${label}"><circle cx="56" cy="56" r="${r}" fill="none" stroke="var(--fill)" stroke-width="10"/><circle cx="56" cy="56" r="${r}" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${f} ${C}" transform="rotate(-90 56 56)"/><text x="56" y="63" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="24" font-weight="600" fill="var(--ink)">${v}</text></svg>`}
+function vSummary(c){
+  return `<div class="panel answer">
+    <div>
+      <div class="kicker">The Westin Residences · Sector 103, Dwarka Expressway, Gurugram</div>
+      <h1>A premium home, not a quick investment.</h1>
+      <p class="say">Good for <b>families and NRIs</b> who want a luxury, hotel-serviced home near the airport and <b>can wait until 2029–2031</b> to move in. Not good if you want to <b>resell for a profit</b>, earn <b>rental income</b>, or need a home <b>soon</b>.</p>
     </div>
-    <div class="hr">
-      <div class="ring">${scoreRing(comp)}<div class="rt"><b>Fixit score</b><span>out of 10, on the 80% of weight assessed. Floor plans add the rest.</span></div></div>
-      <div class="subbars">
-        ${[["Neighbourhood",h,"45%"],["Project",p,"35%"]].map(x=>`<div class="brow" data-tip="<b>${x[0]}</b> · weight ${x[2]}<br>${x[1].toFixed(1)} / 10"><span class="bl">${x[0]}</span><div class="btrack"><div class="bfill" style="width:${x[1]*10}%"></div></div><span class="bv">${x[1].toFixed(1)}</span></div>`).join("")}
-        <div class="brow"><span class="bl" style="color:var(--faint)">Unit layout</span><div class="btrack"></div><span class="bv">—</span></div>
-      </div>
-      <div style="border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px;font-size:12px">
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Tests passed</span><b class="mono">${[c.t1,c.t2,c.t3,c.t4].filter(x=>x==="PASS").length} / 4</b></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Claims in conflict</span><b class="mono" style="color:var(--red)">3</b></div>
-        <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Claims to verify</span><b class="mono" style="color:var(--amber)">3</b></div>
-      </div>
-    </div>
+    <div class="score">${ring(6.8,10,"var(--green)","Fixit score 6.8 out of 10")}<span class="sl">Fixit score</span><span class="ss">out of 10 · good, with caveats</span></div>
   </div>
-  <div class="kpis">
-    <div class="kpi"><div class="lab">All-in · ${S.cfg.replace("BHK"," BHK")}</div><div class="val">${cr(c.allin)}</div><div class="sub">base ${cr(c.base)}</div></div>
-    <div class="kpi"><div class="lab">Monthly EMI</div><div class="val">${cr(c.emi)}</div><div class="sub">needs ${cr(c.minIncome)}/yr net</div></div>
-    <div class="kpi"><div class="lab">Paid before keys</div><div class="val" style="color:${c.preHand>60?"var(--red)":"var(--green)"}">${c.preHand}%</div><div class="sub">${S.slab1}:${S.slab2}:${S.slab3} construction-linked</div></div>
-    <div class="kpi"><div class="lab">Price vs ready stock</div><div class="val" style="color:var(--red)">+${over}%</div><div class="sub">${inr(S.bsp)} vs ${inr(S.rtm)}/sq ft</div></div>
-    <div class="kpi"><div class="lab">Net rental yield</div><div class="val" style="color:var(--red)">${(c.netYield*100).toFixed(1)}%</div><div class="sub">gross ${(c.grossYield*100).toFixed(1)}% · directional</div></div>
-  </div>
-  <div class="grid2" style="margin-top:14px"><div class="panel">${priceChart()}</div><div class="panel">${cashChart(c)}</div></div>
-  ${shead("check","Buyer-case tests","does a case exist for each buyer?")}
-  <div class="vcards">
-    ${vCard("Test 1","Investor exit",c.t1,`Needs a cheap-to-hold plan, or a launch price at or below local ready stock.`,`Neither route passes`,meter("Paid before keys",c.preHand,60,100,v=>v+"%"))}
-    ${vCard("Test 2","Brand & location pull",c.t2,`Westin travels at distance. Nothing on price makes up for not being able to visit.`,`Lead with brand + airport`)}
-    ${vCard("Test 3","First-home buyer",c.t3,`First-home buyers compare new launches with each other.`,`Price-tier mismatch`,meter("₹/sq ft vs launches",S.bsp,S.newLaunch,Math.max(S.bsp,S.newLaunch)*1.25,v=>"₹"+(v/1000).toFixed(1)+"k"))}
-    ${vCard("Test 4","Past-buyer cross-sell",c.t4,`Whiteland's 24-month record wasn't in the brochure. An untested gate isn't a passed gate.`,`One-to-one contact only`)}
+  <div class="nums">
+    <div class="num"><div class="nl">Real price (${CONFIGS[S.cfg].label})</div><div class="nv">${cr(c.total)}</div><div class="ns">₹7 Cr + taxes & charges</div></div>
+    <div class="num"><div class="nl">Monthly EMI</div><div class="nv">${cr(c.emi)}</div><div class="ns">on a ${S.tenure}-year loan</div></div>
+    <div class="num"><div class="nl">Paid before you get keys</div><div class="nv">${cr(c.total*c.preKeys/100)}</div><div class="ns">${c.preKeys}% of the price</div></div>
+    <div class="num"><div class="nl">Ready to move in</div><div class="nv t">2029–31</div><div class="ns">sources give different dates</div></div>
   </div>
   <div class="grid2" style="margin-top:14px">
-    <div class="panel"><div class="subhead">Built for</div><ul class="fitlist">
-      <li><span class="mk y">✓</span><span><b>NRIs with Delhi-NCR or Punjab roots</b> who want a managed, brand-backed home they can own from abroad.</span></li>
-      <li><span class="mk y">✓</span><span><b>Business owners in West Delhi or Dwarka</b> upgrading into hotel-style services, 15–20 min from IGI.</span></li>
-      <li><span class="mk y">✓</span><span><b>Multi-year holders</b> betting on the branded-residence premium who can carry ${c.preHand}% before possession.</span></li>
-      <li><span class="mk y">✓</span><span><b>End users buying launch-investor resale</b> below the current price list.</span></li>
+    <div class="panel"><div class="colhead"><span class="mk y">✓</span>Good for you if…</div><ul class="list">
+      <li><span class="mk y">✓</span><span><b>You want a luxury, serviced home.</b> Westin (Marriott) is meant to run the building: concierge, spa, clubhouse.</span></li>
+      <li><span class="mk y">✓</span><span><b>You travel a lot.</b> Delhi airport is about 15–20 minutes away.</span></li>
+      <li><span class="mk y">✓</span><span><b>You live abroad</b> and want a home in India that someone else looks after.</span></li>
+      <li><span class="mk y">✓</span><span><b>You can pay ${cr(c.total*c.preKeys/100)}</b> during construction without strain.</span></li>
     </ul></div>
-    <div class="panel"><div class="subhead">Not built for</div><ul class="fitlist">
-      <li><span class="mk n">✕</span><span><b>Flip investors.</b> The price sits ${over}% above nearby ready stock, so there's no local upgrade demand to sell into.</span></li>
-      <li><span class="mk n">✕</span><span><b>Renters buying a first home.</b> ${c.preHand}% is due on top of rent for ${Math.max(0,Math.round(c.toPoss/12))}+ years.</span></li>
-      <li><span class="mk n">✕</span><span><b>Rental-yield investors.</b> About ${(c.grossYield*100).toFixed(1)}% gross and ${(c.netYield*100).toFixed(1)}% net.</span></li>
-      <li><span class="mk n">✕</span><span><b>Anyone who must move in within 2 years.</b> Possession ranges from Dec 2028 to Sep 2031 across sources.</span></li>
+    <div class="panel"><div class="colhead"><span class="mk n">✕</span>Not for you if…</div><ul class="list">
+      <li><span class="mk n">✕</span><span><b>You want to resell for a profit soon.</b> It costs ${c.overReady}% more per sq ft than ready homes nearby.</span></li>
+      <li><span class="mk n">✕</span><span><b>You want rental income.</b> Rent would cover only about a third of the EMI.</span></li>
+      <li><span class="mk n">✕</span><span><b>You pay rent today.</b> You'd pay rent and instalments together for years.</span></li>
+      <li><span class="mk n">✕</span><span><b>You need to move in within 2 years.</b> The earliest date anyone gives is Dec 2028.</span></li>
     </ul></div>
   </div>
-  ${shead("flag","Top claims to verify","3 of 8")}
+  <h2 class="sh">Check these before you book</h2>
   <div class="grid3">
-    ${[["Possession date","Dec 2028, Dec 2030 and Sep 2031 across sources.","CONFLICT"],["Who runs the building","'Hotel-managed by Westin'. The operator contract isn't public, and the whole premium rests on it.","VERIFY"],["Unit & tower count","412 to 1,500 units and 5 or 13 towers. Density can't be scored.","CONFLICT"]].map(x=>`<div class="panel"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span class="t-title" style="font-weight:700">${x[0]}</span>${chip(x[2])}</div><p style="font-size:12.5px;color:var(--muted);margin-top:6px">${x[1]}</p></div>`).join("")}
+    <div class="panel check"><h3>When will it be ready?</h3><p>Websites say Dec 2028, Dec 2030 and Sep 2031. That's a three-year gap.</p><div class="ask">Ask: "What possession date is written in the RERA filing for my tower?"</div></div>
+    <div class="panel check"><h3>Will Westin really run it?</h3><p>The brochure says "hotel-managed by Westin". The contract isn't public, and it's the main reason for the high price.</p><div class="ask">Ask: "Can I see the Marriott management agreement?"</div></div>
+    <div class="panel check"><h3>How many homes and towers?</h3><p>Sources say anywhere from 412 to 1,500 homes, in 5 or 13 towers. More homes means more crowding.</p><div class="ask">Ask: "How many towers and homes will there be in total?"</div></div>
   </div>
-  <div style="margin-top:14px"><button class="xlink" data-go="project">See all 8 claims →</button></div>`;
+  ${nextBtn(["Is it right for you?","Answer 6 quick questions and get a personal answer.","Take the 1-minute check"],"fit")}`;
 }
 
-/* ============================ FIT CHECK ============================ */
-const QS=[["purpose","Why are you buying",[["live","To live in"],["hold","Long-term hold"],["flip","Sell near possession"],["rent","Rental income"],["first","My first home"]]],
-  ["house","Household size",[["2","1–2"],["4","3–4"],["6","5+"]]],
-  ["parents","Parents living with you",[["no","No"],["yes","Yes"]]],
-  ["own","Where you live now",[["own","I own"],["rent","I rent"]]],
-  ["nri","Where you're based",[["no","India"],["yes","Abroad, NCR roots"],["far","Abroad, no ties"]]],
-  ["move","Must move in within",[["2","2 years"],["4","4 years"],["flex","Flexible"]]]];
+/* ============================ FIT ============================ */
+const QS=[["purpose","Why are you buying?",[["live","To live in"],["hold","To hold long-term"],["flip","To resell for profit"],["rent","For rental income"],["first","It's my first home"]]],
+  ["house","How many people will live there?",[["2","1–2"],["4","3–4"],["6","5 or more"]]],
+  ["parents","Will your parents live with you?",[["no","No"],["yes","Yes"]]],
+  ["own","Do you own or rent your current home?",[["own","I own"],["rent","I rent"]]],
+  ["nri","Where do you live?",[["no","In India"],["yes","Abroad, family in Delhi-NCR"],["far","Abroad, no family nearby"]]],
+  ["move","When do you need to move in?",[["2","Within 2 years"],["4","Within 4 years"],["flex","No rush"]]]];
 function vFit(c){
-  return phead("Is this project for you?","Answer six questions. The verdict uses the same tests and cost model as the rest of the dashboard. Change the price or payment plan in True cost and it updates here too.")+`
+  return `<div class="phead"><div><h1>Is it right for you?</h1><p>Tap your answers. Your result updates as you go.</p></div></div>
   <div class="fitwrap">
-    <div class="panel"><div class="qgrid">
+    <div class="panel"><div class="qs">
       ${QS.map(q=>`<div class="q"><span class="ql">${q[1]}</span><div class="opts" role="group" aria-label="${q[1]}">${q[2].map(o=>`<button class="opt${F[q[0]]===o[0]?" on":""}" data-q="${q[0]}" data-v="${o[0]}">${o[1]}</button>`).join("")}</div></div>`).join("")}
-      <div class="fld"><label for="f_income">Net household income · ₹ lakh / yr</label><input class="in" id="f_income" type="number" min="0" value="${F.income}"></div>
-      <div class="fld"><label for="f_budget">All-in budget · ₹ crore</label><input class="in" id="f_budget" type="number" min="0" step="0.5" value="${F.budget}"></div>
+      <div class="grid2" style="gap:22px">
+        <div class="q"><label class="ql" for="f_budget">Your total budget</label><div class="money"><span>₹</span><input id="f_budget" type="number" min="0" step="0.5" value="${F.budget}"><span>crore</span></div></div>
+        <div class="q"><label class="ql" for="f_income">Household income after tax</label><div class="money"><span>₹</span><input id="f_income" type="number" min="0" value="${F.income}"><span>lakh / year</span></div></div>
+      </div>
     </div></div>
     <div class="fitside" id="fitOut"></div>
   </div>`;
 }
-
-function fitHTML(c){
-  const R=[];let s=70;const add=(k,t,d)=>{R.push([k,t]);s+=d};
-  const need4=F.parents==="yes"||F.house==="6",cfg=need4?"4BHK":"3BHK",cf=CONFIGS[cfg];
-  const allin=cf.super*S.bsp*(1+S.other/100)*(1+(S.gst+S.stamp)/100),emi=pmt(S.rate/1200,S.tenure*12,cf.super*S.bsp*.75);
-  add("c",`<b>Recommended: ${cfg.replace("BHK"," BHK")}.</b> ${need4?"Parents or 5+ people need the fourth bedroom.":"A 3 BHK covers your household."} All-in about ${cr(allin)}.`,0);
+function fitHTML(){
+  const R=[];let s=70;const add=(t,msg,d)=>{R.push([t,msg]);s+=d};
+  const need4=F.parents==="yes"||F.house==="6",cf=CONFIGS[need4?"4BHK":"3BHK"];
+  const total=cf.super*S.bsp*(1+S.other/100)*(1+(S.gst+S.stamp)/100),emi=pmt(S.rate/1200,S.tenure*12,cf.super*S.bsp*.75);
   const budget=+F.budget*1e7,income=+F.income*1e5;
-  if(budget>=allin)add("y",`<b>Budget covers it</b> with ${cr(budget-allin)} to spare.`,8);
-  else if(budget>=allin*.85)add("c",`<b>Budget is tight.</b> ${cr(allin-budget)} short of the all-in figure. Charges, GST and stamp duty add ~25% to the headline.`,-12);
-  else add("n",`<b>Over budget by ${cr(allin-budget)}.</b> The real figure is ${cr(allin)}, not the ₹7 Cr headline.`,-35);
-  if(income*.4/12>=emi)add("y",`<b>The EMI is affordable.</b> ${cr(emi)}/month is within 40% of your income.`,6);
-  else add("c",`<b>The EMI stretches you.</b> ${cr(emi)}/month needs about ${cr(emi*12/.4)}/yr net. Put more down.`,-12);
-  if(F.own==="rent")add("n",`<b>You'd pay rent and instalments together.</b> ${c.preHand}% is due before handover, over ${Math.max(0,Math.round(c.toPoss))} months.`,-15);
-  if(F.move==="2"&&c.toPoss>24)add("n",`<b>Possession is too late.</b> The earliest public date is Dec 2028, the latest Sep 2031.`,-30);
-  else if(F.move==="4"&&c.toPoss>48)add("c",`<b>Timing is uncertain.</b> The selected possession date is ${Math.round(c.toPoss)} months away. Get the RERA date in writing.`,-10);
+  add("c",`<b>The right size for you is ${cf.label}</b>, which costs about ${cr(total)} in total.`,0);
+  if(budget>=total)add("y",`<b>It fits your budget.</b>`,8);
+  else if(budget>=total*.85)add("c",`<b>It's just over your budget</b>, by ${cr(total-budget)}.`,-12);
+  else add("n",`<b>It's well over your budget</b>, by ${cr(total-budget)}.`,-35);
+  if(income*.4/12>=emi)add("y",`<b>You can afford the EMI</b> of ${cr(emi)} a month.`,6);
+  else add("c",`<b>The EMI of ${cr(emi)} a month would stretch you.</b> A bigger down payment would help.`,-12);
+  if(F.own==="rent")add("n",`<b>You'd pay rent and instalments together</b> until the home is ready.`,-15);
+  if(F.move==="2")add("n",`<b>It won't be ready in time.</b> The earliest date given is Dec 2028.`,-30);
+  else if(F.move==="4")add("c",`<b>It may not be ready in time.</b> Dates range from 2028 to 2031.`,-10);
   const p=F.purpose;
-  if(p==="live")add("y",`<b>You're an end user,</b> which is what this project is priced for: Westin services, the clubhouse, airport access.`,8);
-  if(p==="hold")add("c",`<b>A long hold is possible but slow.</b> You're betting on the branded premium and the corridor maturing.`,-5);
-  if(p==="flip")add("n",`<b>Flipping fails the investor exit test.</b> ${c.preHand}% is paid before keys, and the price is ${Math.round((S.bsp/S.rtm-1)*100)}% above ready stock.`,-35);
-  if(p==="rent")add("n",`<b>The rental yield is thin.</b> About ${(c.grossYield*100).toFixed(1)}% gross and ${(c.netYield*100).toFixed(1)}% net.`,-30);
-  if(p==="first")add("n",`<b>It's priced above first-home options.</b> Recent launches are ~${inr(S.newLaunch)}/sq ft vs ${inr(S.bsp)} here.`,-30);
-  if(F.nri==="yes")add("y",`<b>NRI with regional roots:</b> this phase's primary audience. Family can inspect for you. Check lender NRI policy.`,8);
-  if(F.nri==="far")add("c",`<b>No local ties.</b> The brand does the work, but you can't check the site or progress yourself. Use a buyer's agent.`,-8);
+  if(p==="live")add("y",`<b>Living in it is what this project suits best.</b>`,8);
+  if(p==="hold")add("c",`<b>Holding long-term can work</b>, but expect slow growth, not a quick gain.`,-5);
+  if(p==="flip")add("n",`<b>A quick resale profit is unlikely.</b> It already costs more than homes nearby.`,-35);
+  if(p==="rent")add("n",`<b>Rent won't cover your costs.</b> Expect around 2.5% a year.`,-30);
+  if(p==="first")add("n",`<b>There are cheaper first homes nearby.</b> Similar new projects cost about ${Math.round((S.bsp/S.newLaunch-1)*100)}% less.`,-30);
+  if(F.nri==="yes")add("y",`<b>Good for NRIs.</b> Your family can visit the site for you.`,8);
+  if(F.nri==="far")add("c",`<b>Hard to check from abroad.</b> Consider a trusted agent to visit for you.`,-8);
   s=Math.max(3,Math.min(97,s));
-  const v=s>=70?["Strong fit","green"]:s>=45?["Fit with conditions","amber"]:["Not a fit","red"];
-  const r=52,C=2*Math.PI*r,len=C*.75,fill=len*s/100;
-  return `<div class="panel gauge"><div class="subhead" style="margin:0">Fit score</div>
-    <svg width="160" height="138" viewBox="0 0 150 130" role="img" aria-label="Fit score ${s}"><g transform="rotate(135 75 72)"><circle cx="75" cy="72" r="${r}" fill="none" stroke="var(--fill)" stroke-width="11" stroke-dasharray="${len} ${C}" stroke-linecap="round"/><circle cx="75" cy="72" r="${r}" fill="none" stroke="var(--${v[1]})" stroke-width="11" stroke-dasharray="${fill} ${C}" stroke-linecap="round"/></g><text x="75" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="32" fill="var(--ink)">${s}</text></svg>
-    <div class="v" style="color:var(--${v[1]})">${v[0]}</div><div style="font-size:11.5px;color:var(--faint)">out of 100</div></div>
-  <div class="panel"><div class="subhead">Why</div><ul class="fitlist">${R.map(x=>`<li><span class="mk ${x[0]}">${x[0]==="y"?"✓":x[0]==="n"?"✕":"!"}</span><span>${x[1]}</span></li>`).join("")}</ul></div>`;
-}
-
-/* ============================ PROJECT ============================ */
-function vProject(c){
-  const h=bscore(SCORE.hood),p=bscore(SCORE.proj);
-  const claims=[["Possession date","Dec 2028 (channel site)","Dec 2030 / Sep 2031 on listings","Decides the cost-of-waiting maths","CONFLICT"],["Total units","Not stated","412 / 674 (Ph 1) / 1,500","Density can't be scored","CONFLICT"],["Towers","Not stated","5 vs 13 (S+43 to G+49)","Density, views, build time","CONFLICT"],["Configuration labels","3 & 4 BHK","Some list 3.5 & 4.5 BHK","Likely study/staff rooms; check plans","MINOR"],["Clubhouse","'India's largest'","1.75 lakh sq ft reported, not in RERA","Whole-project amenity area often quoted","VERIFY"],["Open space","'80% open green'","Plausible (70–85%)","Check podium counted as open","VERIFY"],["Operator after possession","'Hotel-managed by Westin'","Contract not public","The premium rests on this","VERIFY"],["Land parcel","22+ acres","20–21 acres on most listings","Use RERA figure","MINOR"]];
-  const usps=[["India's first standalone Westin residences","High","R","Live in a home run to a global hotel standard, with 9,500+ Marriott hotels behind the name.","green"],["Airport in 15–20 minutes","High","R","Wheels down at T3, home before your luggage would clear a Golf Course Road jam.","green"],["Hotel-managed services","Medium","V","Use only once the operator agreement is confirmed in writing.","amber"],["Very large clubhouse","Low","V","Don't quote the size until the RERA area statement confirms it.","red"],["~80% open landscape on ~21 acres","Medium","V","A resort-scale green, not a courtyard between towers.","amber"]];
-  return phead("Project","What the brochure states, what public records say, and how it scores.")+`
-  <div class="grid2">
-    <div class="panel"><div class="subhead">Core facts</div><dl class="kv">
-      <dt>Project</dt><dd>${P.name} <span style="color:var(--faint)">(RERA: Urban Resort)</span> ${src("B")}</dd>
-      <dt>Developer</dt><dd>${P.dev} ${src("B")}</dd>
-      <dt>Brand</dt><dd>${P.brand} ${src("B")}</dd>
-      <dt>Location</dt><dd>${P.loc} ${src("B")}</dd>
-      <dt>RERA</dt><dd class="mono" style="font-size:11.5px;line-height:1.7">${P.rera.join("<br>")}</dd>
-      <dt>Land</dt><dd>20–22 acres ${src("V")}</dd>
-      <dt>Towers / units</dt><dd>5–13 towers · 412–1,500 units ${src("V")}</dd>
-      <dt>Density</dt><dd>20–71 units/acre ${src("C")}</dd>
-      <dt>Configurations</dt><dd>3 BHK from ~₹7 Cr · 4 BHK from ~₹10 Cr · penthouse on request ${src("B")}</dd>
-      <dt>Payment plan</dt><dd>${S.slab1}:${S.slab2}:${S.slab3} construction-linked ${src("R")}</dd>
-    </dl></div>
-    <div class="panel"><div class="subhead">Location strength</div><div class="bars">
-      ${[["IGI Airport & Aerocity",5,"~15–20 min"],["NH-48 & Delhi border",4.5,"~5 min"],["Cyber City / Udyog Vihar",3,"40–55 min peak"],["Social infrastructure",2.5,"Building out"],["Metro",1.5,"Proposed only"]].map(x=>`<div class="brow"><span class="bl" title="${x[2]}"><b>${x[0]}</b> <span style="color:var(--faint)">${x[2]}</span></span><div class="btrack"><div class="bfill ${x[1]>=4?"g":x[1]>=3?"a":"r"}" style="width:${x[1]/5*100}%"></div></div><span class="bv">${x[1].toFixed(1)}</span></div>`).join("")}
-    </div>
-    ${note("The project scores better than its location today. The brand and amenities are doing work the neighbourhood can't yet do.")}</div>
-  </div>
-  ${shead("flag","Claims vs public records","8 items")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Item</th><th>Brochure says</th><th>Public record</th><th>Why it matters</th><th>Status</th></tr></thead><tbody>
-  ${claims.map(r=>`<tr><td class="t-title">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${chip(r[4])}</td></tr>`).join("")}</tbody></table></div>
-  ${note("<b>The one fact everything rests on:</b> who operates the building after possession. If Marriott manages it under contract, the concierge and resale-premium arguments hold. If it's a name licence with the developer running services, most of the premium falls away.",true)}
-  ${shead("bulb","USPs, ranked by how well they survive scrutiny","")}
-  <div class="plays">${usps.map(u=>`<div class="play ${u[4]}"><div class="ph"><span class="pt">${u[0]}</span>${src(u[2])}<span class="pcode">confidence: ${u[1]}</span></div><div class="say">"${u[3]}"</div></div>`).join("")}</div>
-  ${shead("grid","Scorecard","neighbourhood 45 · project 35 · unit 20")}
-  <div class="kpis k4">
-    <div class="kpi"><div class="lab">Neighbourhood</div><div class="val">${h.toFixed(1)}</div><div class="sub">weight 45%</div></div>
-    <div class="kpi"><div class="lab">Project</div><div class="val">${p.toFixed(1)}</div><div class="sub">weight 35%</div></div>
-    <div class="kpi"><div class="lab">Unit layout</div><div class="val" style="color:var(--faint)">—</div><div class="sub">upload floor plans</div></div>
-    <div class="kpi"><div class="lab">Composite</div><div class="val">${((h*45+p*35)/80).toFixed(1)}</div><div class="sub">on 80% base</div></div>
-  </div>
-  <div class="grid2" style="margin-top:14px">
-    ${[["Neighbourhood & catchment",SCORE.hood],["Project evaluation",SCORE.proj]].map(b=>`<div class="panel"><div class="subhead">${b[0]}</div><div class="bars">${b[1].map(r=>`<div class="brow" title="${r[3]}"><span class="bl">${r[0]} <span style="color:var(--faint)">×${r[1]}</span></span><div class="btrack"><div class="bfill ${r[2]>=4?"g":r[2]>=3?"":"r"}" style="width:${r[2]/5*100}%"></div></div><span class="bv">${r[2].toFixed(1)}</span></div>`).join("")}</div></div>`).join("")}
-  </div>`;
+  const v=s>=70?["Good fit","var(--green)","This project suits you."]:s>=45?["Maybe","var(--amber)","It could work. Check the points below."]:["Not a good fit","var(--red)","You'd likely be better off elsewhere."];
+  const r=54,C=2*Math.PI*r,len=C*.75,fill=len*s/100;
+  return `<div class="panel gauge">
+    <svg width="170" height="146" viewBox="0 0 150 130" role="img" aria-label="Match ${s} out of 100"><g transform="rotate(135 75 72)"><circle cx="75" cy="72" r="${r}" fill="none" stroke="var(--fill)" stroke-width="12" stroke-dasharray="${len} ${C}" stroke-linecap="round"/><circle cx="75" cy="72" r="${r}" fill="none" stroke="${v[1]}" stroke-width="12" stroke-dasharray="${fill} ${C}" stroke-linecap="round"/></g><text x="75" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="32" fill="var(--ink)">${s}%</text><text x="75" y="100" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--faint)">match</text></svg>
+    <div class="v" style="color:${v[1]}">${v[0]}</div><div class="small">${v[2]}</div></div>
+  <div class="panel"><ul class="list">${R.map(x=>`<li><span class="mk ${x[0]}">${x[0]==="y"?"✓":x[0]==="n"?"✕":"!"}</span><span>${x[1]}</span></li>`).join("")}</ul></div>`;
 }
 
 /* ============================ COST ============================ */
-function waterfall(c){
-  const steps=[["Base price",0,c.base,"bar"],["Other charges",c.base,c.other,"amber"],["GST",c.base+c.other,c.gst,"amber"],["Stamp + registry",c.sub+c.gst,c.stamp,"amber"],["All-in",0,c.allin,"blue"]];
-  const W=560,H=230,L=12,R=12,T=26,B=34,max=c.allin*1.06,bw=(W-L-R)/steps.length;
-  const Y=v=>T+(H-T-B)*(1-v/max);let g=`<line x1="${L}" x2="${W-R}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line2)"/>`;
-  steps.forEach((s,i)=>{const x=L+i*bw+bw*.18,w=bw*.64,y0=Y(s[1]+s[2]),y1=Y(s[1]);
-    g+=`<rect x="${x}" y="${y0}" width="${w}" height="${Math.max(2,y1-y0)}" rx="4" fill="var(--${s[3]})" data-tip="<b>${s[0]}</b><br>${cr(s[2])}${i&&i<4?" · +"+(s[2]/c.base*100).toFixed(1)+"% of base":""}"/>`;
-    if(i<steps.length-1){const nx=L+(i+1)*bw+bw*.18;g+=`<line x1="${x+w}" x2="${nx}" y1="${y0}" y2="${y0}" stroke="var(--faint)" stroke-dasharray="2 3"/>`}
-    g+=`<text x="${x+w/2}" y="${y0-7}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)" font-family="JetBrains Mono, monospace">${i&&i<4?"+":""}${cr(s[2])}</text>`;
-    g+=`<text x="${x+w/2}" y="${H-12}" text-anchor="middle" font-size="11" fill="var(--muted)">${s[0]}</text>`;});
-  return `<div class="chart-h"><div><div class="ct">From headline to all-in</div><div class="cs">${S.cfg.replace("BHK"," BHK")} · charges, GST and stamp duty add ${((c.allin/c.base-1)*100).toFixed(0)}%</div></div>${chip("Computed","b")}</div><div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cost build-up waterfall">${g}</svg></div>`;
+function breakdown(c){
+  const steps=[["Flat price",0,c.base,"var(--bar)"],["Parking, club & other charges",c.base,c.other,"var(--amber)"],["GST",c.base+c.other,c.gst,"var(--amber)"],["Stamp duty",c.base+c.other+c.gst,c.stamp,"var(--amber)"],["What you pay",0,c.total,"var(--blue)"]];
+  const W=620,H=240,L=8,R=8,T=28,B=40,max=c.total*1.06,bw=(W-L-R)/steps.length,Y=v=>T+(H-T-B)*(1-v/max);
+  let g=`<line x1="${L}" x2="${W-R}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line2)"/>`;
+  steps.forEach((s,i)=>{const x=L+i*bw+bw*.2,w=bw*.6,y0=Y(s[1]+s[2]),y1=Y(s[1]);
+    g+=`<rect x="${x}" y="${y0}" width="${w}" height="${Math.max(2,y1-y0)}" rx="5" fill="${s[3]}"/>`;
+    g+=`<text x="${x+w/2}" y="${y0-8}" text-anchor="middle" font-size="13" font-weight="600" fill="var(--ink)" font-family="JetBrains Mono, monospace">${i&&i<4?"+":""}${cr(s[2])}</text>`;
+    const words=s[0].split(" ");const l1=words.length>2?words.slice(0,2).join(" "):s[0],l2=words.length>2?words.slice(2).join(" "):"";
+    g+=`<text x="${x+w/2}" y="${H-22}" text-anchor="middle" font-size="12" fill="var(--muted)">${l1}</text>`+(l2?`<text x="${x+w/2}" y="${H-7}" text-anchor="middle" font-size="12" fill="var(--muted)">${l2}</text>`:"")});
+  return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="How the price adds up">${g}</svg></div>`;
 }
 function vCost(c){
-  const f=(id,l,step)=>`<div class="fld"><label for="m_${id}">${l}</label><input class="in" id="m_${id}" type="number" step="${step||1}" value="${S[id]}"></div>`;
-  return phead("True cost","The ₹7 Cr headline is the base price. Buyers should qualify against the all-in figure. Amber fields are inputs, and every view recalculates when you change them.",`<div class="seg" role="group" aria-label="Configuration">${Object.keys(CONFIGS).map(k=>`<button data-cfg="${k}" class="${S.cfg===k?"on":""}">${k.replace("BHK"," BHK")}</button>`).join("")}</div>`)+`
-  <div class="kpis k4">
-    <div class="kpi"><div class="lab">All-in cost</div><div class="val">${cr(c.allin)}</div><div class="sub">+${((c.allin/c.base-1)*100).toFixed(0)}% over base</div></div>
-    <div class="kpi"><div class="lab">Due at booking</div><div class="val">${cr(c.allin*S.slab1/100)}</div><div class="sub">${S.slab1}% up front</div></div>
-    <div class="kpi"><div class="lab">Monthly EMI</div><div class="val">${cr(c.emi)}</div><div class="sub">${S.rate}% · ${S.tenure} yrs · 75% loan</div></div>
-    <div class="kpi"><div class="lab">Income needed</div><div class="val">${cr(c.minIncome)}</div><div class="sub">net per year · EMI ≤ 40%</div></div>
+  return `<div class="phead"><div><h1>What will it really cost?</h1><p>The brochure shows the flat price. Taxes and charges add about ${Math.round((c.total/c.base-1)*100)}% on top.</p></div>
+    <div class="seg" role="group" aria-label="Home size">${Object.keys(CONFIGS).map(x=>`<button data-cfg="${x}" class="${S.cfg===x?"on":""}">${CONFIGS[x].label}</button>`).join("")}</div></div>
+  <div class="nums" style="margin-top:0">
+    <div class="num"><div class="nl">Total you pay</div><div class="nv">${cr(c.total)}</div><div class="ns">${CONFIGS[S.cfg].label} · ${CONFIGS[S.cfg].size}</div></div>
+    <div class="num"><div class="nl">Home loan (75%)</div><div class="nv">${cr(c.loan)}</div><div class="ns">banks lend on the flat price</div></div>
+    <div class="num"><div class="nl">Your own money</div><div class="nv">${cr(c.own)}</div><div class="ns">everything the loan doesn't cover</div></div>
+    <div class="num"><div class="nl">Monthly EMI</div><div class="nv">${cr(c.emi)}</div><div class="ns">needs ~${cr(c.incomeNeeded)}/yr income</div></div>
   </div>
-  <div class="grid2" style="grid-template-columns:340px 1fr;margin-top:14px" id="costGrid">
-    <div class="panel">
-      <div class="subhead">Inputs</div>
-      <div class="form" style="grid-template-columns:1fr 1fr">
-        ${f("super","Super area, sq ft",10)}${f("bsp","BSP, ₹/sq ft",100)}
-        ${f("slab1","Booking %")}${f("slab2","Construction %")}${f("slab3","On possession %")}${f("other","Other charges %")}
-        ${f("rate","Loan rate %",.1)}${f("tenure","Tenure, yrs")}
-      </div>
-      <div class="slab" aria-label="Payment plan split"><div style="width:${S.slab1}%;background:var(--red)">${S.slab1}%</div><div style="width:${S.slab2}%;background:var(--amber)">${S.slab2}%</div><div style="width:${S.slab3}%;background:var(--green)">${S.slab3}%</div></div>
-      <div class="legend"><span><i style="background:var(--red)"></i>Booking</span><span><i style="background:var(--amber)"></i>Construction</span><span><i style="background:var(--green)"></i>At keys</span></div>
-      <div class="subhead" style="margin-top:18px">Market benchmarks</div>
-      <div class="form" style="grid-template-columns:1fr 1fr">
-        ${f("rtm","Ready stock, ₹/sq ft",500)}${f("newLaunch","Recent launches, ₹/sq ft",500)}${f("rent","Monthly rent, ₹",5000)}
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
-      <div class="panel">${waterfall(c)}</div>
-      <div class="panel">${cashChart(c)}</div>
-    </div>
+  <div class="panel" style="margin-top:14px"><div style="font-size:16px;font-weight:700;margin-bottom:6px">How the price adds up</div>${breakdown(c)}</div>
+  <h2 class="sh">When you pay</h2>
+  <div class="plan">
+    <div><div class="pp"><span class="dot" style="background:var(--red)"></span>When you book</div><div class="pv">${cr(c.total*S.slab1/100)}</div><div class="pp">${S.slab1}% · now</div></div>
+    <div><div class="pp"><span class="dot" style="background:var(--amber)"></span>While it's being built</div><div class="pv">${cr(c.total*S.slab2/100)}</div><div class="pp">${S.slab2}% · over ~${Math.round(c.toPoss/12)} years</div></div>
+    <div><div class="pp"><span class="dot" style="background:var(--green)"></span>When you get the keys</div><div class="pv">${cr(c.total*S.slab3/100)}</div><div class="pp">${S.slab3}% · around 2030</div></div>
   </div>
-  ${shead("rupee","Cost chain","every line is a formula")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Line</th><th class="num">Amount</th><th>Basis</th></tr></thead><tbody>
-      <tr><td>Super area</td><td class="num ink">${S.super.toLocaleString("en-IN")} sq ft</td><td>${src("R")}</td></tr>
-      <tr><td>Base price</td><td class="num ink">${cr(c.base)}</td><td>${src("C")}</td></tr>
-      <tr><td>Other charges @ ${S.other}%</td><td class="num ink">${cr(c.other)}</td><td>Assumed. Replace with cost sheet</td></tr>
-      <tr><td>GST @ ${S.gst}%</td><td class="num ink">${cr(c.gst)}</td><td>Under-construction rate</td></tr>
-      <tr><td>Stamp duty + registry @ ${S.stamp}%</td><td class="num ink">${cr(c.stamp)}</td><td>Haryana. Verify rate</td></tr>
-      <tr class="tot"><td>All-in cost</td><td class="num">${cr(c.allin)}</td><td></td></tr>
-      <tr><td>Rate on carpet (~62% efficiency)</td><td class="num ink">${inr(c.rateCarpet)}/sq ft</td><td>Assumed until floor plans</td></tr>
-      <tr><td>Paid before possession (${c.preHand}%)</td><td class="num ink">${cr(c.allin*c.preHand/100)}</td><td>Committed with no keys</td></tr>
-      <tr><td>Loan (75% of agreement value)</td><td class="num ink">${cr(c.loan)}</td><td>Banks fund agreement value</td></tr>
-      <tr class="tot"><td>Monthly EMI</td><td class="num">${cr(c.emi)}</td><td></td></tr>
-      <tr><td>Gross / net rental yield</td><td class="num ink">${(c.grossYield*100).toFixed(1)}% / ${(c.netYield*100).toFixed(1)}%</td><td>${src("D")}</td></tr>
-  </tbody></table></div>
-  ${shead("users","Who can and can't carry this","7 conditions")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Buyer condition</th><th>Verdict</th><th>Action</th></tr></thead><tbody>
-    ${[["Already owns, selling to fund","PASS",`Sale proceeds cover the ${S.slab1}% booking. Qualify on sale timeline.`],["Business owner, lumpy income","PASS","Construction-linked calls suit cash-rich owners."],["Salaried, EMI above 45% of income","FAIL","Qualify out at enquiry, not at booking."],["Renting, lease ends within 24 months","FAIL",`Rent plus instalments for ${Math.max(0,Math.round(c.toPoss))} months. Route to ready stock.`],["NRI","PASS","Confirm lender and repatriation terms."],["Retiree","CONDITIONAL","Cash buyers only. Loan tenure capped by age."],["Yield-seeking investor","FAIL",`${(c.netYield*100).toFixed(1)}% net is below a deposit rate.`]].map(r=>`<tr><td class="t-title">${r[0]}</td><td>${chip(r[1])}</td><td>${r[2]}</td></tr>`).join("")}
-  </tbody></table></div>`;
+  <p class="small" style="margin-top:12px">${c.preKeys}% is paid before you can move in. If you rent today, you'll be paying rent and instalments together during that time.</p>
+  <h2 class="sh">Change the loan</h2>
+  <div class="panel"><div class="inputs">
+    <div class="inp"><label for="m_rate">Interest rate (%)</label><input id="m_rate" type="number" step="0.1" value="${S.rate}"></div>
+    <div class="inp"><label for="m_tenure">Loan length (years)</label><input id="m_tenure" type="number" value="${S.tenure}"></div>
+    <div class="inp"><label for="m_bsp">Price per sq ft (₹)</label><input id="m_bsp" type="number" step="500" value="${S.bsp}"></div>
+  </div><p class="small" style="margin-top:12px">We've assumed 12% for parking, club and other charges, since the brochure doesn't list them. Ask the builder for the full cost sheet.</p></div>`;
 }
 
-/* ============================ TIMING & TESTS ============================ */
-function vTiming(c){
-  const over=Math.round((S.bsp/S.rtm-1)*100),overNL=Math.round((S.bsp/S.newLaunch-1)*100);
-  const who=[["Investors only","Local investors, past buyers, residents"],["Investors only","Nearby cities, boundary states"],["Mostly investors + deal-hunting end users","Out-of-state investors & NRIs with Haryana/Delhi roots"],["Mostly end users + rental investors","End users who can see the building"],["End users only","The investor case has expired"]];
-  const test=(n,t,rows,v,why,m)=>`<div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px"><div><span class="pcode" style="font-family:var(--mono);font-size:11px;color:var(--faint)">${n}</span><div class="t-title" style="font-weight:700;font-size:14.5px">${t}</div></div>${chip(v)}</div>
-    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Condition</th><th>This project</th><th>Result</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="t-title">${r[0]}<span class="t-sub">${r[1]}</span></td><td class="mono" style="font-size:11.5px">${r[2]}</td><td>${chip(r[3])}</td></tr>`).join("")}</tbody></table></div>
-    ${m||""}<p style="font-size:12.5px;color:var(--muted);margin-top:10px">${why}</p></div>`;
-  return phead("Timing & buyer-case tests","Developers work their easiest audiences first. By month four the local lists have been called. Where the project sits in its sales cycle decides who is still worth targeting.")+`
-  <div class="kpis k4">
-    <div class="kpi"><div class="lab">Months since launch</div><div class="val">${c.elapsed.toFixed(1)}</div><div class="sub">basis: RERA reg. 18 Jun 2024</div></div>
-    <div class="kpi"><div class="lab">Current phase</div><div class="val txt">${c.phase[0]}</div><div class="sub">${c.ph<4?Math.max(0,c.phase[2]-c.elapsed).toFixed(1)+" months left in phase":"handed over"}</div></div>
-    <div class="kpi"><div class="lab">Months to possession</div><div class="val">${Math.max(0,c.toPoss).toFixed(0)}</div><div class="sub"><select id="possSel" aria-label="Possession source">${P.poss.map(o=>`<option value="${o.v}"${o.v===S.possession?" selected":""}>${o.l}</option>`).join("")}</select></div></div>
-    <div class="kpi"><div class="lab">Possession month</div><div class="val">${c.possMonth.toFixed(0)}</div><div class="sub">after launch</div></div>
+/* ============================ INVESTMENT ============================ */
+function vInvest(c){
+  const rows=[["Ready homes nearby",S.rtm],["New projects nearby",S.newLaunch],["The Westin Residences",S.bsp,"you"],["Golf Course Road (luxury)",25000]];
+  const max=Math.max(...rows.map(r=>r[1]))*1.05;
+  const monthlyRent=S.rent;
+  const card=(q,b,body)=>`<div class="panel qa"><div class="qh"><h3>${q}</h3>${b}</div>${body}</div>`;
+  return `<div class="phead"><div><h1>Is it a good investment?</h1><p>Short answer: it's better as a home than as an investment. Here's why.</p></div></div>
+  <div class="panel"><div style="font-size:16px;font-weight:700">Price per sq ft, compared</div><p class="small" style="margin:2px 0 14px">This project is priced like a luxury brand, well above the area around it.</p>
+    ${rows.map(r=>`<div class="pbar ${r[2]||""}"><span class="bl">${r[0]}</span><div class="btrack"><div class="bfill" style="width:${r[1]/max*100}%"></div></div><span class="bv">${k(r[1])}</span></div>`).join("")}
   </div>
-  <div class="panel tbl-wrap timeline" style="margin-top:14px">${tl(c)}</div>
-  <div class="panel tbl-wrap" style="margin-top:14px"><table class="tbl"><thead><tr><th>Phase</th><th>Months</th><th>Status</th><th>Who's buying</th><th>Where to find them</th></tr></thead><tbody>
-  ${c.phases.map((p,i)=>`<tr class="${i===c.ph?"hl":""}"><td class="t-title">${p[0]}</td><td class="mono">${p[1]}–${p[2]>100?"":p[2]}${p[2]>100?"+":""}</td><td>${i===c.ph?chip("NOW"):i<c.ph?chip("Harvested",""):chip("Upcoming","v")}</td><td>${who[i][0]}</td><td>${who[i][1]}</td></tr>`).join("")}
-  </tbody></table></div>
-  ${note("<b>Your closest competitor is your own launch buyers.</b> Launch investors hold paper gains while construction calls keep coming. Some will sell or assign below the current price list, so track owner-listed resale every month.",true)}
-  ${shead("check","Buyer-case tests","a fail excludes the buyer type")}
-  <div class="grid2">
-  ${test("Test 1","Investor exit",[["A · Holding-friendly plan","≤60% before handover",`${c.preHand}%`,c.routeA?"PASS":"FAIL"],["B · Price vs ready stock","launch ≤ RTM rate",`${inr(S.bsp)} vs ${inr(S.rtm)} (+${over}%)`,c.routeB?"PASS":"FAIL"]],c.t1,c.t1==="FAIL"?"Neither route passes. The investors who remain are multi-year holders betting on the branded premium, which needs a different pitch from a flip.":"At least one exit route works.",`<div class="grid2" style="gap:14px">${meter("Paid before keys",c.preHand,60,100,v=>v+"%")}${meter("₹/sq ft vs ready stock",S.bsp,S.rtm,Math.max(S.bsp,S.rtm)*1.2,v=>"₹"+(v/1000).toFixed(1)+"k")}</div>`)}
-  ${test("Test 2","Brand & location pull",[["Brand pull","carries at distance","Westin global; Whiteland regional","PASS"],["Location legibility","verifiable in one search","Dwarka Expressway known; no metro","PARTIAL"],["Price or plan advantage","compensates","Fails Test 1",c.t1==="FAIL"?"FAIL":"PASS"],["Airport proximity","genuine, in minutes","IGI ~15–20 min","PASS"]],c.t2,"The brand stands in for a site visit. Lead overseas creative with brand and airport, never with price.")}
-  ${test("Test 3","First-home buyer",[["A · Competitive with launches","≤ recent launches",`${inr(S.bsp)} vs ${inr(S.newLaunch)} (+${overNL}%)`,c.condA?"PASS":"FAIL"],["B · Carryable while renting","≤60% before handover",`${c.preHand}%`,c.condB?"PASS":"FAIL"]],c.t3,c.t3==="FAIL"?"Condition A fails on price tier, which rules out this segment. Don't write content for it.":"Price holds. A payment-plan restructure would open this segment.",meter("₹/sq ft vs recent launches",S.bsp,S.newLaunch,Math.max(S.bsp,S.newLaunch)*1.2,v=>"₹"+(v/1000).toFixed(1)+"k"))}
-  ${test("Test 4","Past-buyer cross-sell",[["Sentiment, 24 months","positive or neutral","Not supplied","UNTESTED"],["Prior-phase delivery","no stalled phases","Not supplied","UNTESTED"],["Counter-evidence","debt repaid, deliveries","'Zero-debt' (reported)","VERIFY"]],"UNTESTED","Until HARERA history and reviews are checked, contact past Whiteland buyers one-to-one through senior sales. No broadcasts or resident events.")}
-  </div>
-  <div class="cta">${ic("bulb","ci")}<div><span class="lead">The one decision</span><b>Move to a 20:80 or 25:75 subvention plan.</b> It passes Test 1 Route A and gives out-of-state buyers the price-or-plan advantage Test 2 is missing. It's the highest-return commercial change available.</div></div>`;
-}
-function tl(c){
-  const W=900,H=112,x0=16,x1=W-16,max=Math.max(72,c.possMonth+6),X=m=>x0+(x1-x0)*Math.min(m,max)/max;
-  const cols=["var(--fill)","var(--fill)","var(--amber-soft)","var(--green-soft)","var(--fill2)"];let g="";
-  c.phases.forEach((p,i)=>{const a=X(p[1]),b=X(Math.min(p[2],max));g+=`<rect x="${a}" y="30" width="${b-a}" height="30" rx="4" fill="${cols[i]}" stroke="var(--panel)" stroke-width="2"/>`;if(b-a>56)g+=`<text x="${(a+b)/2}" y="49" text-anchor="middle" font-size="11.5" font-family="Inter, sans-serif" fill="var(--${i===c.ph?"ink":"muted"})" font-weight="${i===c.ph?700:500}">${p[0]}</text>`});
-  for(let m=0;m<=max;m+=12)g+=`<text x="${X(m)}" y="78" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="var(--faint)">m${m}</text>`;
-  const t=X(c.elapsed),pp=X(c.possMonth);
-  g+=`<line x1="${pp}" x2="${pp}" y1="22" y2="64" stroke="var(--green)" stroke-width="2" stroke-dasharray="4 3"/><text x="${pp}" y="16" text-anchor="${pp>W-110?"end":"middle"}" font-size="10.5" font-family="JetBrains Mono, monospace" fill="var(--green)">possession m${c.possMonth.toFixed(0)}</text>`;
-  g+=`<line x1="${t}" x2="${t}" y1="22" y2="64" stroke="var(--red)" stroke-width="2.5"/><circle cx="${t}" cy="22" r="4" fill="var(--red)"/><text x="${t}" y="98" text-anchor="middle" font-size="11.5" font-weight="700" font-family="Inter, sans-serif" fill="var(--red)">Today · month ${c.elapsed.toFixed(0)}</text>`;
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sales-phase timeline">${g}</svg>`;
-}
-
-/* ============================ BUYERS ============================ */
-function vBuyers(c){
-  const P2=[{n:"Rajiv & Meera Khanna",i:"RK",bg:"var(--blue-soft)",fg:"var(--blue)",sub:"52 · business owner · Dwarka Sec 12 → 4 BHK",q:"\"We live at the Westin.\"",rows:[["Need","Owns a DDA flat in Dwarka. Outgrown it, won't move far from the airport or family."],["Desire","A hotel lobby every evening. Concierge, spa, a club to host business friends."],["Decides on","Brand › airport › size › all-in price"],["Main objection","\"Why ₹24k here when ready flats nearby are ₹15k?\""],["What closes them","Branded service list + a measured airport drive"],["What loses them","Base price quoted, all-in sprung later"],["Channel","WhatsApp from senior RM, referrals"]]},
-    {n:"Aman Sethi",i:"AS",bg:"var(--violet-soft)",fg:"var(--violet)",sub:"44 · Dubai-based · family in Janakpuri → 3 BHK",q:"\"A home in India that runs itself.\"",rows:[["Need","Lives in Dubai, family in Delhi. Wants a home that doesn't need him present."],["Desire","Landing at T3 and being home in 20 minutes, the apartment ready."],["Decides on","Operator › possession certainty › brand › resale"],["Main objection","\"Who runs it after handover, in writing?\""],["What closes them","Operator agreement + family site visit on video"],["What loses them","Vague possession dates"],["Channel","Gulf/UK diaspora media, YouTube, search"]]}];
-  const feed=[["Dwarka, Delhi (Sec 6–23)","DDA / CGHS","−10 min","₹14–20k","Upgrade","\"Same airport. Twenty minutes. A building run by Westin.\"","0.25"],["West Delhi: Janakpuri, Rajouri, Punjabi Bagh","Builder floors","+5–15 min","₹18–30k","Parity","\"Keep the neighbourhood. Add a concierge.\"","0.50"],["Palam Vihar / Sector 23","Ageing high-rise","−5 min","₹10–14k","Upgrade","\"The upgrade you've waited for is 10 minutes away.\"","0.50"],["New Gurugram (Sec 82–95)","Mid-premium","+10 min","₹9–13k","Upgrade","\"Move up, and closer to the airport.\"","0.50"],["Launch-investor resale","Assignments","—","below list","—","Competitor row: track monthly","1.00"],["Golf Course Road / Ext.","Premium high-rise","+15–25 min","₹25–45k","CORRECTED","Not an upgrade audience. Portfolio only","0.25"]];
-  const glob=[["UAE","NRI",9],["Punjab: Ludhiana, Jalandhar, Chandigarh","Out-of-state HNI",7],["UK","NRI",7],["USA / Canada","NRI",6],["Singapore","NRI / expat",4],["Jaipur","Out-of-state HNI",4]];
-  const fam=[["Household","3–4 (3 BHK) · 5–6 (4 BHK)","Single or couple buying for space"],["Life stage","Established, 40–60","Young family needing walkable schools now"],["Parents","Resident parents → 4 BHK","—"],["Work pattern","Frequent flyers, owners, flexible CXOs","Daily metro commute to Cyber City"],["Ownership","Owns now; upgrade or second home","Renting with no sale to fund booking"]];
-  return phead("Buyers","Who lives here, where they live today, and where demand comes from. Local markets feed this project only if their own prices are at or below ₹"+(S.bsp/1000).toFixed(0)+"k/sq ft.")+`
-  ${shead("users","Personas","derived from the layout and price")}
-  <div class="grid2">${P2.map(p=>`<div class="panel persona"><div class="ph2"><span class="avatar" style="background:${p.bg};color:${p.fg}">${p.i}</span><div><div style="font-weight:700;font-size:15px">${p.n}</div><div style="font-size:12px;color:var(--faint)">${p.sub}</div></div></div><div class="quote">${p.q}</div><dl class="kv">${p.rows.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl></div>`).join("")}</div>
-  ${shead("pin","Feeder localities","ranked by price tier, then commute")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Locality</th><th>Stock</th><th>Commute Δ</th><th>Home value</th><th>Size</th><th>Lead message</th><th class="num">Phase fit</th></tr></thead><tbody>
-  ${feed.map(r=>`<tr class="${r[4]==="CORRECTED"?"x":""}"><td class="t-title">${r[0]}</td><td>${r[1]}</td><td class="mono">${r[2]}</td><td class="mono">${r[3]}</td><td>${r[4]==="CORRECTED"?chip("CORRECTED"):r[4]==="—"?"—":chip(r[4],r[4]==="Upgrade"?"g":"")}</td><td class="ink">${r[5]}</td><td class="num">${r[6]}</td></tr>`).join("")}</tbody></table></div>
   <div class="grid2" style="margin-top:14px">
-    <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><div class="subhead" style="margin:0">Out-of-state & overseas demand</div>${chip("Directional","a")}</div>
-      <div class="bars" style="margin-top:12px">${glob.map(g=>`<div class="brow" data-tip="<b>${g[0]}</b> · ${g[1]}<br>Relative index ${g[2]} / 10"><span class="bl"><b>${g[0]}</b> <span style="color:var(--faint)">${g[1]}</span></span><div class="btrack"><div class="bfill b" style="width:${g[2]*10}%"></div></div><span class="bv">${g[2]}</span></div>`).join("")}</div>
-      ${note("Qualifier for this phase: a past record of investing in Haryana or Delhi, or roots there. Replace with search geo data and CRM source cities as enquiries arrive.")}</div>
-    <div class="panel tbl-wrap"><div class="subhead">Family fit</div><table class="tbl"><thead><tr><th></th><th>Suited</th><th>Not suited</th></tr></thead><tbody>
-      ${fam.map(r=>`<tr><td class="t-title">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
-  </div>`;
+    ${card("Can I resell it for a profit?",badge("Unlikely","r"),`<p>It already costs <b>${c.overReady}% more</b> than ready homes nearby, and you pay <b>${c.preKeys}%</b> before it's built. Buyers near possession usually want a small step up from what they own, not a big jump.</p>`)}
+    ${card("Will rent cover my costs?",badge("No","r"),`<p>Expected rent is about <b>${cr(monthlyRent)} a month</b>, against an EMI of <b>${cr(c.emi)}</b>. That's about <b>${c.yieldPct.toFixed(1)}% a year</b>, less than a fixed deposit.</p>`)}
+    ${card("Will it hold its value long-term?",badge("Probably","a"),`<p>Branded homes tend to keep a price premium, and prices in Sector 103 rose around <b>18% last year</b> (reported). This depends on Westin really running the building.</p>`)}
+    ${card("Is it a good first home?",badge("Usually not","r"),`<p>Similar new projects on the same road cost about <b>${c.overNew}% less</b>. First-time buyers will usually get more home for their money elsewhere.</p>`)}
+  </div>
+  ${nextBtn(["Still interested?","See the full price, taxes and payment schedule.","See the cost"],"cost")}`;
 }
 
-/* ============================ PLAYBOOK ============================ */
-function vPlaybook(c){
-  const t1f=c.t1==="FAIL",t3f=c.t3==="FAIL";
-  const seg=[["NRI · UAE, NCR/Punjab roots","Diaspora media, YouTube",7,8,6,6,1.5,"Brand + airport film; family site-visit offer"],["NRI · UK/US/Canada, Delhi roots","YouTube, search",6,8,5,5,1.5,"Operator explainer; virtual walkthrough"],["Punjab & Chandigarh business families","Channel partners, events",6,7,6,6,1.5,"Private preview in Chandigarh"],["End users buying investor resale","Portals, search",4,7,7,8,1,"Broker desk; monitor owner listings"],["West Delhi business families","WhatsApp RM, referrals",6,7,6,6,.5,"Serve inbound; re-approach at tower release"],["Gurugram investors / CP lists","Channel partners",7,6,4,5,.5,"Serve inbound only"],["Whiteland past buyers","One-to-one senior sales",3,7,6,9,.5,"Run Test 4 first. No broadcasts"],["Dwarka (Delhi) upgraders","Search, local digital",7,8,6,7,.25,"Hold. Re-approach at topping-out"],["Aerocity airline & hospitality leaders","LinkedIn, events",4,8,5,6,.25,"Hold for near-possession"],["Cyber City CXOs","LinkedIn",4,6,5,5,.25,"Hold. Needs measured-commute proof"],["Golf Course Road owners","—",3,2,2,3,1,"CORRECTED: portfolio allocation only"],["Flip investors","—",6,3,2,4,t1f?0:1,t1f?"Excluded: fails Test 1":"Eligible"],["First-home buyers","—",5,2,2,3,t3f?0:.5,t3f?"Excluded: fails Test 3":"HELD: plan change"],["Rental-yield investors","—",4,3,3,4,0,`Excluded: net yield ${(c.netYield*100).toFixed(1)}%`]]
-    .map(s=>{const i=s[2]*.25+s[3]*.3+s[4]*.3+s[5]*.15;return[...s,i,i*s[6]]}).sort((a,b)=>b[9]-a[9]);
-  const maxA=Math.max(...seg.map(s=>s[9]));
-  const themes=[["Status & discovery","Aman, Rajiv","\"You already choose Westin when you travel.\"","Brand film · 45s","Cold","blue"],["Delivery & hand-holding","Aman","\"Your parents can see the site this Sunday. You don't have to.\"","Family-inspection reel","Warm","violet"],["Airport life","Rajiv, frequent flyers","\"Wheels down at T3. Home before your tea's cold.\"","Real-time drive POV","Cold","blue"],["Family without compromise","Rajiv & Meera","\"Your mother gets her own room. You get your evenings back.\"","Floor-plan walkthrough","Warm","violet"],["Legal certainty","Cautious buyers, NRIs","\"Here's the registration. Here's the operator.\"","Document on screen","Hot","green"],["Long-hold appreciation","HNI holders","\"Branded homes hold value because the brand holds the building.\"","Data explainer (cite source)","Warm","violet"]];
-  const gaps=[["Unit floor plans with dimensions","Unit score (20%), carpet efficiency, family fit","High"],["Cost sheet","Replaces the 12% other-charges assumption","High"],["RERA possession date per tower","Settles 2028 / 2030 / 2031","High"],["Operator agreement","The fact the premium rests on","High"],["Actual first-booking date","May shift the sales phase","Medium"],["Inventory sold, by configuration","Confirms the harvesting presumption","Medium"],["Whiteland 24-month record","Runs Test 4","Medium"],["Clubhouse area from RERA","Confirms 'India's largest'","Low"]];
-  return phead("Playbook","Who to spend on, what to make for them, and what to verify first. Index = volume ×0.25 + fit ×0.30 + conversion ×0.30 + cost ×0.15, multiplied by phase fit.")+`
-  ${shead("target","Action priorities","ranked on phase-adjusted index")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th class="num">#</th><th>Segment</th><th class="num">Raw</th><th class="num">Phase</th><th style="min-width:140px">Adjusted</th><th>First action</th></tr></thead><tbody>
-  ${seg.map((s,i)=>`<tr class="${s[6]===0?"x":""}"><td class="num">${s[6]===0?"—":i+1}</td><td class="t-title">${s[0]}<span class="t-sub">${s[1]}</span></td><td class="num">${s[8].toFixed(2)}</td><td class="num">×${s[6].toFixed(2)}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="btrack" style="flex:1"><div class="bfill ${s[6]>=1.5?"g":s[6]>=1?"b":s[6]>0?"a":"r"}" style="width:${s[9]/maxA*100}%"></div></div><span class="mono" style="font-size:11.5px;color:var(--ink);min-width:34px;text-align:right">${s[9].toFixed(2)}</span></div></td><td>${s[6]===0?chip("EXCLUDED")+" ":""}${s[7]}</td></tr>`).join("")}
-  </tbody></table></div>
-  <div class="legend"><span><i style="background:var(--green)"></i>Primary now (×1.5)</span><span><i style="background:var(--blue)"></i>Viable (×1.0)</span><span><i style="background:var(--amber)"></i>Harvested or early</span><span><i style="background:var(--red)"></i>Excluded by a test</span></div>
-  ${shead("bulb","Content themes","one per scoring motivation")}
-  <div class="plays">${themes.map(t=>`<div class="play ${t[5]}"><div class="ph"><span class="pt">${t[0]}</span>${chip(t[4],t[4]==="Cold"?"b":t[4]==="Warm"?"v":"g")}<span class="pcode">${t[3]} · serves ${t[1]}</span></div><div class="say">${t[2]}</div></div>`).join("")}
-  <div class="play muted"><div class="ph"><span class="pt" style="color:var(--muted)">Not written: first home, rental yield</span></div><div class="why">Both fail their buyer-case tests. Advertising a yield would also need compliance review.</div></div></div>
-  ${shead("search","What to verify","upload these to sharpen the analysis")}
-  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Missing input</th><th>What it unlocks</th><th>Priority</th></tr></thead><tbody>
-  ${gaps.map(g=>`<tr><td class="t-title">${g[0]}</td><td>${g[1]}</td><td>${chip(g[2],g[2]==="High"?"r":g[2]==="Medium"?"a":"")}</td></tr>`).join("")}</tbody></table></div>`;
+/* ============================ DETAILS ============================ */
+function vDetails(){
+  const facts=[["Location","Sector 103, Dwarka Expressway, Gurugram"],["Builder","Whiteland Corporation"],["Brand","Westin (Marriott)"],["Home types","3 BHK and 4 BHK, plus penthouses"],["Price from","₹7 Cr (3 BHK) · ₹10 Cr (4 BHK)"],["Registered","Yes, 4 RERA numbers (2024–25)"],["Land","About 21 acres","Sources differ: 20–22"],["Homes","412 to 1,500","Sources differ a lot"],["Ready by","2028 to 2031","Sources differ"]];
+  const dist=[["Delhi airport (IGI)","15–20 min","g","Great"],["NH-48 highway","5 min","g","Great"],["Cyber City offices","40–55 min at rush hour","a","OK"],["Schools & hospitals","Still coming up","a","Growing"],["Metro","Planned, not built","r","Not yet"]];
+  const claims=[["Ready date","Dec 2028","Other sites say Dec 2030 or Sep 2031","Doesn't match","r"],["Who runs it","\"Hotel-managed by Westin\"","Contract not public","Not confirmed","a"],["Number of homes","Not mentioned","412 to 1,500 across sources","Doesn't match","r"],["Clubhouse","\"India's largest\"","Size not in government records","Not confirmed","a"],["Green space","\"80% open\"","Possible for this type of project","Not confirmed","a"],["Land","22+ acres","Most sites say 20–21","Small difference","n"]];
+  return `<div class="phead"><div><h1>Project details</h1><p>The key facts, and where the brochure and other sources don't agree.</p></div></div>
+  <div class="facts">${facts.map(f=>`<div class="fact"><div class="label">${f[0]}</div><div class="fv">${f[1]}</div>${f[2]?`<div class="fn">⚠ ${f[2]}</div>`:""}</div>`).join("")}</div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="panel"><div style="font-size:16px;font-weight:700;margin-bottom:14px">Getting around</div><div class="dist">${dist.map(d=>`<span>${d[0]}</span><span class="dt">${d[1]}</span>${badge(d[3],d[2])}`).join("")}</div></div>
+    <div class="panel"><div style="font-size:16px;font-weight:700;margin-bottom:14px">What you get</div><div class="amen">${["24/7 concierge","Butler service","Spa","Infinity pool","Large clubhouse","Gym","Fine dining","Sports courts","Kids' zone","Zen gardens","Event spaces","Airport transfers","Marriott hotel perks"].map(a=>`<span>${a}</span>`).join("")}</div></div>
+  </div>
+  <h2 class="sh">Brochure vs. what we found</h2>
+  <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Topic</th><th>Brochure says</th><th>What we found</th><th>Status</th></tr></thead><tbody>
+  ${claims.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${badge(r[3],r[4])}</td></tr>`).join("")}</tbody></table></div>`;
 }
 
-/* ============================ BINDINGS ============================ */
-function bind(c){
+/* ============================ BIND ============================ */
+function bind(){
   document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
-  const cs=$("#cashSvg");
-  if(cs){const hit=$("#cashHit"),dot=$("#cashDot"),d=cs.dataset,T0=+d.t0,Tm=+d.tm,W=+d.w,L=+d.l,R=+d.r,T=+d.t,H=+d.h,B=+d.b;
-    hit.addEventListener("mousemove",e=>{const r=cs.getBoundingClientRect(),sx=(e.clientX-r.left)*W/r.width;let m=Math.max(0,Math.min(Tm,(sx-L)/(W-L-R)*Tm));
-      const pct=m>=T0?100:S.slab1+S.slab2*m/T0;dot.setAttribute("cx",L+(W-L-R)*m/Tm);dot.setAttribute("cy",T+(H-T-B)*(1-pct/100));dot.style.display="";
-      tip(e,`<b>${m<0.5?"Today":"+"+Math.round(m)+" months"}</b><br>${pct.toFixed(0)}% paid · ${cr(c.allin*pct/100)}${m>=T0?"<br>Keys handed over":""}`)});
-    hit.addEventListener("mouseleave",()=>{dot.style.display="none";untip()});}
   if(cur==="fit"){
-    const out=$("#fitOut");out.innerHTML=fitHTML(c);
-    document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{F[b.dataset.q]=b.dataset.v;document.querySelectorAll(`.opt[data-q="${b.dataset.q}"]`).forEach(x=>x.classList.toggle("on",x===b));out.innerHTML=fitHTML(compute())});
-    document.querySelectorAll("#main input").forEach(el=>el.addEventListener("input",()=>{F[el.id.slice(2)]=el.value;out.innerHTML=fitHTML(compute())}));
+    const out=$("#fitOut");out.innerHTML=fitHTML();
+    document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{F[b.dataset.q]=b.dataset.v;document.querySelectorAll(`.opt[data-q="${b.dataset.q}"]`).forEach(x=>x.classList.toggle("on",x===b));out.innerHTML=fitHTML()});
+    document.querySelectorAll("#main input").forEach(el=>el.addEventListener("input",()=>{F[el.id.slice(2)]=el.value;out.innerHTML=fitHTML()}));
   }
   if(cur==="cost"){
     document.querySelectorAll("#main input").forEach(el=>el.addEventListener("change",()=>{S[el.id.slice(2)]=+el.value||0;const id=el.id;render();const n=document.getElementById(id);if(n)n.focus()}));
     document.querySelectorAll("[data-cfg]").forEach(b=>b.onclick=()=>{S.cfg=b.dataset.cfg;S.super=CONFIGS[S.cfg].super;S.rent=CONFIGS[S.cfg].rent;render()});
-    const g=$("#costGrid");if(g&&innerWidth<900)g.style.gridTemplateColumns="1fr";
   }
-  if(cur==="timing"){$("#possSel").onchange=e=>{S.possession=e.target.value;render()}}
 }
-function tip(e,html){const t=$("#tip");t.innerHTML=html;t.hidden=false;const w=t.offsetWidth,h=t.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;t.style.left=x+"px";t.style.top=y+"px"}
-function untip(){$("#tip").hidden=true}
-document.addEventListener("mousemove",e=>{const el=e.target.closest&&e.target.closest("[data-tip]");if(el)tip(e,el.dataset.tip);else if(!e.target.closest||!e.target.closest("#cashHit"))untip()});
-
-$("#upBtn").onclick=()=>{analysed=false;cur="upload";$("#meta").textContent="No document";renderTabs();render()};
-
+$("#upBtn").onclick=()=>{analysed=false;cur="upload";renderTabs();render()};
 renderTabs();render();
 </script>
 </body>
